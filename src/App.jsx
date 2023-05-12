@@ -6,7 +6,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <Box as="main" m="0 auto">
+    <Box as="main">
       <Header></Header>
     </Box>
   );

@@ -2,7 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 
 export const Logo = () => {
   return (
-    <Box display="flex" gap="12px">
+    <Box display="flex" gap="12px" mb="10px">
       <Box
         as="svg"
         width="50"
@@ -19,16 +19,10 @@ export const Logo = () => {
         />
       </Box>
       <Box>
-        <Heading
-          as="h1"
-          size="lg"
-          color="main"
-          lineHeight="1"
-          fontFamily="body"
-        >
+        <Heading as="h1" fontSize="4xl" color="main" lineHeight="0.8">
           Storage
         </Heading>
-        <Heading as="h2" size="sx" color="main" fontFamily="body">
+        <Heading as="h2" size="sx" color="main" lineHeight="1.8">
           Sirin Software
         </Heading>
       </Box>
