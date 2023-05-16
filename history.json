@@ -3,36 +3,42 @@
         "name": "MacBook",
         "action": "Take",
         "date": "02.05.2023",
-        "location": "From location"
+        "location": "From location",
+        "sn": "C02DCKB4ML7H"
     },
     {
         "name": "MacBook",
         "action": "Return",
         "date": "01.05.2023",
-        "location": "Sorting Table"
+        "location": "Sorting Table",
+        "sn": "C02DCKB4ML7H"
     },
     {
-        "name": "DevKit",
+        "name": "Raspberry Pi",
         "action": "Return",
         "date": "01.05.2023",
-        "location": "Sorting Table"
+        "location": "Sorting Table",
+        "sn": "40077419010397231840"
     },
     {
-        "name": "MacBook",
+        "name": "Kingston DDR4-2400",
         "action": "Take",
         "date": "02.05.2023",
-        "location": "From location"
+        "location": "From location",
+        "sn": "BF673969"
     },
     {
         "name": "MacBook",
         "action": "Return",
         "date": "01.05.2023",
-        "location": "Sorting Table"
+        "location": "Sorting Table",
+        "sn": "BF673969"
     },
     {
-        "name": "DevKit",
+        "name": "Raspberry Pi",
         "action": "Return",
         "date": "01.05.2023",
-        "location": "Sorting Table"
+        "location": "Sorting Table",
+        "sn": "40077419010397231840"
     }
 ]

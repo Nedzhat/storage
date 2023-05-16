@@ -8,6 +8,10 @@ import {
 } from "react-icons/md";
 
 export const ActiveDevices = () => {
+  const clickHandler = (id) => {
+    console.log(id);
+  };
+
   return (
     <Box>
       <Flex justifyContent="space-between" p={8}>
@@ -21,10 +25,10 @@ export const ActiveDevices = () => {
         </Button>
       </Flex>
       <Flex flexWrap="wrap" px={8} gap="15px">
-        {MyDevices.map(({ id, name, info, sn }, idx) => {
+        {MyDevices.map(({ id, name, info, sn, type }, idx) => {
           return (
             <Flex
-              key={idx}
+              key={id}
               flexDirection="column"
               justifyContent="space-around"
               w="32%"
@@ -35,6 +39,7 @@ export const ActiveDevices = () => {
               <Flex justifyContent="space-between">
                 <MdOutlineImportantDevices size={30} color="main" />
                 <IconButton
+                  onClick={() => clickHandler(id)}
                   variant="outline"
                   colorScheme="#323b4b"
                   aria-label="Delete"
@@ -43,7 +48,12 @@ export const ActiveDevices = () => {
                   _hover={{ bg: "main", color: "white" }}
                 />
               </Flex>
-              <Text fontWeight="bold">{name}</Text>
+              <Flex justifyContent="space-between" alignItems="center">
+                <Text fontWeight="bold">{name}</Text>
+                <Text fontSize="sm" color="second">
+                  {type}
+                </Text>
+              </Flex>
               <Text fontSize="sm">{info}</Text>
               <Text color="second">S/N: {sn}</Text>
             </Flex>

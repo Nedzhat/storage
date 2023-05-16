@@ -26,16 +26,18 @@ export const History = () => {
                 <Th>Action</Th>
                 <Th>Date</Th>
                 <Th>Location</Th>
+                <Th>Serial Number</Th>
               </Tr>
             </Thead>
             <Tbody>
-              {history.map(({ name, action, date, location }, idx) => {
+              {history.map(({ name, action, date, location, sn }, idx) => {
                 return (
                   <Tr key={idx}>
                     <Td>{name}</Td>
                     <Td>{action}</Td>
                     <Td>{date}</Td>
                     <Td>{location}</Td>
+                    <Td>{sn}</Td>
                   </Tr>
                 );
               })}
