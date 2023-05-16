@@ -1,0 +1,38 @@
+[
+    {
+        "name": "MacBook",
+        "action": "Take",
+        "date": "02.05.2023",
+        "location": "From location"
+    },
+    {
+        "name": "MacBook",
+        "action": "Return",
+        "date": "01.05.2023",
+        "location": "Sorting Table"
+    },
+    {
+        "name": "DevKit",
+        "action": "Return",
+        "date": "01.05.2023",
+        "location": "Sorting Table"
+    },
+    {
+        "name": "MacBook",
+        "action": "Take",
+        "date": "02.05.2023",
+        "location": "From location"
+    },
+    {
+        "name": "MacBook",
+        "action": "Return",
+        "date": "01.05.2023",
+        "location": "Sorting Table"
+    },
+    {
+        "name": "DevKit",
+        "action": "Return",
+        "date": "01.05.2023",
+        "location": "Sorting Table"
+    }
+]

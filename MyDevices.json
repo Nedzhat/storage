@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "MacBook",
+        "info": "13-inch, 2020, Four Thunderbolt 3 ports",
+        "sn": "C02DCKB4ML7H"
+    },
+    {
+        "id": 2,
+        "name": "MacBook",
+        "info": "lorem",
+        "sn": "C02DCKB4ML7H"
+    },
+    {
+        "id": 3,
+        "name": "MacBook",
+        "info": "13-inch, 2020, Four Thunderbolt 3 ports from usa",
+        "sn": "C02DCKB4ML7H"
+    },
+    {
+        "id": 4,
+        "name": "MacBook",
+        "info": "lorem fsgsg sgsgsmg sgskgmskl ksgskgnsk skgmsklmgs. sgsg ",
+        "sn": "C02DCKB4ML7H"
+    }
+]
