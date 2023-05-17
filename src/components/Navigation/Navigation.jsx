@@ -8,31 +8,62 @@ import {
   AiOutlineDeliveredProcedure,
 } from "react-icons/ai";
 import { linkStyles, svgStyle } from "./Navigation.styled";
+import { NavLink } from "react-router-dom";
 
 export const Navigation = () => {
   return (
     <Flex as="nav" flexDirection="column">
-      <Box as="a" sx={linkStyles} href="#">
-        <AiOutlineFolderOpen style={svgStyle} />
+      <Box
+        as={NavLink}
+        sx={linkStyles}
+        to={"/"}
+        _activeLink={{ color: "white", bg: "main" }}
+      >
+        <AiOutlineLaptop style={svgStyle} />
         <Text fontWeight="bold">My devices</Text>
       </Box>
-      <Box as="a" sx={linkStyles} href="#">
-        <AiOutlineUsergroupDelete style={svgStyle} />
+      <Box
+        as={NavLink}
+        sx={linkStyles}
+        to={"/people"}
+        _activeLink={{ color: "white", bg: "main" }}
+      >
+        <AiOutlineLaptop style={svgStyle} />
         <Text fontWeight="bold">People</Text>
       </Box>
-      <Box as="a" sx={linkStyles} href="#">
+      <Box
+        as={NavLink}
+        sx={linkStyles}
+        to={"/equipment"}
+        _activeLink={{ color: "white", bg: "main" }}
+      >
         <AiOutlineLaptop style={svgStyle} />
         <Text fontWeight="bold">Equipment</Text>
       </Box>
-      <Box as="a" sx={linkStyles} href="#">
+      <Box
+        as={NavLink}
+        sx={linkStyles}
+        to={"/projects"}
+        _activeLink={{ color: "white", bg: "main" }}
+      >
         <AiOutlineFundProjectionScreen style={svgStyle} />
         <Text fontWeight="bold">Projects</Text>
       </Box>
-      <Box as="a" sx={linkStyles} href="#">
+      <Box
+        as={NavLink}
+        sx={linkStyles}
+        to={"/workplace"}
+        _activeLink={{ color: "white", bg: "main" }}
+      >
         <AiOutlineInbox style={svgStyle} />
         <Text fontWeight="bold">Workplace</Text>
       </Box>
-      <Box as="a" sx={linkStyles} href="#">
+      <Box
+        as={NavLink}
+        sx={linkStyles}
+        to={"/delivery"}
+        _activeLink={{ color: "white", bg: "main" }}
+      >
         <AiOutlineDeliveredProcedure style={svgStyle} />
         <Text fontWeight="bold">Delivery</Text>
       </Box>

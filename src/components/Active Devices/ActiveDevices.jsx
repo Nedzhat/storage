@@ -35,6 +35,7 @@ export const ActiveDevices = () => {
               bg="white"
               p={3}
               borderRadius="12px"
+              boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
             >
               <Flex justifyContent="space-between">
                 <MdOutlineImportantDevices size={30} color="main" />
