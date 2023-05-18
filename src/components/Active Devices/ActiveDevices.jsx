@@ -24,8 +24,8 @@ export const ActiveDevices = () => {
           Register
         </Button>
       </Flex>
-      <Flex flexWrap="wrap" px={8} gap="15px">
-        {MyDevices.map(({ id, name, info, sn, type }, idx) => {
+      <Flex flexWrap="wrap" justifyContent="space-between" px={8} gap="15px 0">
+        {MyDevices.map(({ id, name, info, sn, type }) => {
           return (
             <Flex
               key={id}

@@ -4,7 +4,7 @@ import { History } from "../../components/History/History";
 
 export const MyDevices = () => {
   return (
-    <Box as="section" bg="bgColor" w="60%">
+    <Box as="section" bg="bgColor" w="60%" h="100%">
       <ActiveDevices />
       <History />
     </Box>

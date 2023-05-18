@@ -1,9 +1,12 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
+import { FilterPeople } from "../../components/FilterPeople/FilterPeople";
+import { EmployeesList } from "../../components/EmployeesList/EmployeesList";
 
 export const People = () => {
   return (
-    <Box w="60%" bg="bgColor">
-      <Text>People Page!</Text>
+    <Box as="section" w="60%" bg="bgColor" p={8} h="100%">
+      <FilterPeople />
+      <EmployeesList />
     </Box>
   );
 };

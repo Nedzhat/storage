@@ -16,7 +16,12 @@ import history from "../../../history.json";
 export const History = () => {
   return (
     <Box p={8}>
-      <Box bg="white" borderRadius="12px" p={8}>
+      <Box
+        bg="white"
+        borderRadius="12px"
+        p={8}
+        boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
+      >
         <Heading size="lg">History</Heading>
         <TableContainer>
           <Table variant="striped" colorScheme="#323b4b">

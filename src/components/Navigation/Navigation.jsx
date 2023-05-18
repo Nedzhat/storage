@@ -19,7 +19,7 @@ export const Navigation = () => {
         to={"/"}
         _activeLink={{ color: "white", bg: "main" }}
       >
-        <AiOutlineLaptop style={svgStyle} />
+        <AiOutlineFolderOpen style={svgStyle} />
         <Text fontWeight="bold">My devices</Text>
       </Box>
       <Box
@@ -28,7 +28,7 @@ export const Navigation = () => {
         to={"/people"}
         _activeLink={{ color: "white", bg: "main" }}
       >
-        <AiOutlineLaptop style={svgStyle} />
+        <AiOutlineUsergroupDelete style={svgStyle} />
         <Text fontWeight="bold">People</Text>
       </Box>
       <Box

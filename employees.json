@@ -1,0 +1,86 @@
+[
+    {
+        "id": 10,
+        "name": "Brian Haney",
+        "position": "DevOps",
+        "devices": [1,5]
+    },
+    {
+        "id": 11,
+        "name": "Damon Mccoy",
+        "position": "PM",
+        "devices": [2]
+    },
+    {
+        "id": 12,
+        "name": "Sabrina Franco",
+        "position": "Marketing",
+        "devices": []
+    },
+    {
+        "id": 13,
+        "name": "Fintan Woodard",
+        "position": "Copywriter",
+        "devices": [1,3]
+    },
+    {
+        "id": 14,
+        "name": "Jackson Kane",
+        "position": "Designer",
+        "devices": [4]
+    },
+    {
+        "id": 15,
+        "name": "Caitlin Carlson",
+        "position": "HR",
+        "devices": [5]
+    },
+    {
+        "id": 16,
+        "name": "Khalid Strong",
+        "position": "Embedded Engineer",
+        "devices": [2]
+    },
+    {
+        "id": 17,
+        "name": "Darcy Buck",
+        "position": "QA",
+        "devices": []
+    },
+    {
+        "id": 18,
+        "name": "Darcy Buck",
+        "position": "QA",
+        "devices": []
+    },
+    {
+        "id": 19,
+        "name": "Darcy Buck",
+        "position": "QA",
+        "devices": []
+    },
+    {
+        "id": 20,
+        "name": "Darcy Buck",
+        "position": "QA",
+        "devices": []
+    },
+    {
+        "id": 21,
+        "name": "Darcy Buck",
+        "position": "QA",
+        "devices": []
+    },
+    {
+        "id": 22,
+        "name": "Darcy Buck",
+        "position": "QA",
+        "devices": []
+    },
+    {
+        "id": 23,
+        "name": "Darcy Buck",
+        "position": "QA",
+        "devices": []
+    }
+]
