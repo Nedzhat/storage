@@ -21,7 +21,7 @@ export const EmployeesList = () => {
   const filterDevices = (devices) => {
     // console.log(employees);
     // console.log(MyDevices);
-
+    // console.log(devices);
     const r = devices.find((dev) => dev.id === employees[0].devices[1]);
     // console.log(r);
     return r;
@@ -70,11 +70,7 @@ export const EmployeesList = () => {
                         <TableContainer>
                           <Table variant="striped" colorScheme="#323b4b">
                             <Tbody>
-                              <Tr>
-                                <Td>{res.name}</Td>
-                                <Td>{res.info}</Td>
-                                <Td>{res.sn}</Td>
-                              </Tr>
+                              {/* {console.log(MyDevices)} */}
                               <Tr>
                                 <Td>{res.name}</Td>
                                 <Td>{res.info}</Td>
@@ -103,3 +99,5 @@ export const EmployeesList = () => {
     </Flex>
   );
 };
+
+// myDevices.map => devices []

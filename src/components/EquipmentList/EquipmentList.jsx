@@ -1,38 +1,17 @@
-import {
-  Button,
-  Flex,
-  Popover,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverTrigger,
-  Portal,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Text,
-  Tr,
-} from "@chakra-ui/react";
-import employees from "../../../employees.json";
-import MyDevices from "../../../MyDevices.json";
+import { Flex, Text } from "@chakra-ui/react";
 import allDevices from "../../../allDevices.json";
 
 export const EquipmentList = () => {
-  const filterDevices = (devices) => {
-    // console.log(employees);
-    // console.log(MyDevices);
-
-    const r = devices.find((dev) => dev.id === employees[0].devices[1]);
-    // console.log(r);
-    return r;
-  };
-
-  const res = filterDevices(MyDevices);
-  //   console.log(res);
+  function colorPick(status) {
+    if (status === "use") {
+      return "#ffe7e5";
+    } else {
+      return "#e7ffde";
+    }
+  }
 
   return (
-    <Flex flexWrap="wrap" mt={8} justifyContent="space-between" gap="20px 0">
+    <Flex flexWrap="wrap" justifyContent="space-between" gap="20px 0">
       {allDevices.map(({ id, name, info, sn, type, location, status }) => {
         return (
           <Flex
@@ -42,6 +21,7 @@ export const EquipmentList = () => {
             bg="white"
             p={3}
             borderRadius="12px"
+            bgColor={colorPick(status)}
             boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
           >
             <Text fontSize="2xl" fontWeight="bold">

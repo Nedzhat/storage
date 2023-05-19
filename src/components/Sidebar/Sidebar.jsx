@@ -20,7 +20,7 @@ const getType = (acc, type) => {
 
 const countType = (type) => type.reduce(getType, {});
 const typeCount = countType(type);
-const res = Object.entries(typeCount);
+export const resTypesDevices = Object.entries(typeCount);
 
 export const Sidebar = () => {
   return (
@@ -43,7 +43,7 @@ export const Sidebar = () => {
         <Heading fontSize="md">Your Devices</Heading>
         <Divider mt={5} mb={2} borderColor="main" borderBottomWidth="2px" />
         <Flex gap="10px" flexDirection="column">
-          {res.map((device, idx) => {
+          {resTypesDevices.map((device, idx) => {
             return (
               <Flex
                 key={idx}

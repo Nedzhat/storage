@@ -1,6 +1,6 @@
 import { Flex, Heading, Input } from "@chakra-ui/react";
 
-export const FilterPeople = () => {
+export const FinderPeople = () => {
   return (
     <Flex justifyContent="space-between">
       <Heading size="lg">Employees</Heading>
