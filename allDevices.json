@@ -43,5 +43,49 @@
         "type": "RAM",
         "location": "closet-1",
         "status": "stock"
+    },{
+        "id": 6,
+        "name": "MacBook",
+        "info": "13-inch, 2020, Four Thunderbolt 3 ports",
+        "sn": "C02DCKB4ML7H",
+        "type": "Laptop",
+        "location": "closet-1",
+        "status": "use"
+    },
+    {
+        "id": 7,
+        "name": "Raspberry Pi",
+        "info": "3 Model B V.1.2 2015",
+        "sn": "40077419010397231840",
+        "type": "DevKit",
+        "location": "closet-2",
+        "status": "use"
+    },
+    {
+        "id": 8,
+        "name": "Samsung",
+        "info": "S22E390H",
+        "sn": "0AMKHLLJ700366N",
+        "type": "Monitor",
+        "location": "closet-2",
+        "status": "stock"
+    },
+    {
+        "id": 9,
+        "name": "Kingston DDR4-2400",
+        "info": "8192 MB PC4-19200 ECC",
+        "sn": "BF673969",
+        "type": "RAM",
+        "location": "closet-1",
+        "status": "stock"
+    },
+    {
+        "id": 10,
+        "name": "Kingston DDR4-2400",
+        "info": "8192 MB PC4-19200 ECC",
+        "sn": "BF673969",
+        "type": "RAM",
+        "location": "closet-1",
+        "status": "stock"
     }
 ]

@@ -37,16 +37,16 @@ export const EmployeesList = () => {
           <Flex
             key={id}
             flexDirection="column"
-            justifyContent="space-around"
-            w="45%"
+            w="100%"
             bg="white"
             p={3}
             borderRadius="12px"
             boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
           >
-            <Flex justifyContent="space-between" px={8} gap="15px"></Flex>
             <Flex justifyContent="space-between" alignItems="center">
-              <Text fontWeight="bold">{name}</Text>
+              <Text fontSize="2xl" fontWeight="bold">
+                {name}
+              </Text>
               <Text fontSize="sm" color="second">
                 {position}
               </Text>

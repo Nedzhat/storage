@@ -1,9 +1,12 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { FilterEquipment } from "../../components/FilterEquipment/FilterEquipment";
+import { EquipmentList } from "../../components/EquipmentList/EquipmentList";
 
 export const Equipment = () => {
   return (
-    <Box w="60%" bg="bgColor">
-      <Text>Equipment page!</Text>
+    <Box as="section" w="60%" bg="bgColor" p={8} h="100%">
+      <FilterEquipment />
+      <EquipmentList />
     </Box>
   );
 };

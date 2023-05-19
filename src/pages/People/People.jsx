@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { FilterPeople } from "../../components/FilterPeople/FilterPeople";
 import { EmployeesList } from "../../components/EmployeesList/EmployeesList";
 
