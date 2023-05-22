@@ -1,12 +1,13 @@
 import { Box, Flex, Text, Divider } from "@chakra-ui/react";
 import {
   AiOutlineFolderOpen,
-  AiOutlineUsergroupDelete,
+  AiOutlineTeam,
   AiOutlineLaptop,
   AiOutlineFundProjectionScreen,
   AiOutlineInbox,
   AiOutlineDeliveredProcedure,
 } from "react-icons/ai";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { linkStyles, svgStyle } from "./Navigation.styled";
 import { NavLink } from "react-router-dom";
 
@@ -28,7 +29,7 @@ export const Navigation = () => {
         to={"/people"}
         _activeLink={{ color: "white", bg: "main" }}
       >
-        <AiOutlineUsergroupDelete style={svgStyle} />
+        <AiOutlineTeam style={svgStyle} />
         <Text fontWeight="bold">People</Text>
       </Box>
       <Box
@@ -61,11 +62,11 @@ export const Navigation = () => {
       <Box
         as={NavLink}
         sx={linkStyles}
-        to={"/delivery"}
+        to={"/admin"}
         _activeLink={{ color: "white", bg: "main" }}
       >
-        <AiOutlineDeliveredProcedure style={svgStyle} />
-        <Text fontWeight="bold">Delivery</Text>
+        <MdOutlineAdminPanelSettings style={svgStyle} />
+        <Text fontWeight="bold">Admin</Text>
       </Box>
       <Divider mt={5} borderColor="main" borderBottomWidth="2px" />
     </Flex>

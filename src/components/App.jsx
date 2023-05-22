@@ -5,7 +5,7 @@ import { People } from "../pages/People/People";
 import { Equipment } from "../pages/Equipment/Equipment";
 import { Projects } from "../pages/Projects/Projects";
 import { Workplace } from "../pages/Workplace/Workplace";
-import { Delivery } from "../pages/Delivery/Delivery";
+import { Admin } from "../pages/Admin/Admin";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path="/equipment" element={<Equipment />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/workplace" element={<Workplace />} />
-        <Route path="/delivery" element={<Delivery />} />
+        <Route path="/admin" element={<Admin />} />
       </Route>
     </Routes>
   );

@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   Flex,
   Popover,
   PopoverBody,
@@ -14,21 +15,28 @@ import {
   Text,
   Tr,
 } from "@chakra-ui/react";
+
 import employees from "../../../employees.json";
 import MyDevices from "../../../MyDevices.json";
 
 export const EmployeesList = () => {
+  // console.log(employees);
+  // console.log(MyDevices);
+
   const filterDevices = (devices) => {
-    // console.log(employees);
-    // console.log(MyDevices);
-    // console.log(devices);
     const r = devices.find((dev) => dev.id === employees[0].devices[1]);
-    // console.log(r);
+
     return r;
   };
 
   const res = filterDevices(MyDevices);
-  //   console.log(res);
+
+  const fil = (dev) => {
+    // console.log(dev);
+    const filRes = [];
+    filRes.push(MyDevices.filter((device) => device.id === dev));
+    console.log(filRes);
+  };
 
   return (
     <Flex flexWrap="wrap" mt={8} justifyContent="space-between" gap="20px 0">
@@ -52,47 +60,59 @@ export const EmployeesList = () => {
               </Text>
             </Flex>
             <Text fontSize="sm">{position}</Text>
-            <Popover closeOnBlur={false} placement="bottom">
-              {({ isOpen, onClose }) => (
-                <>
-                  <PopoverTrigger>
-                    <Button
-                      bgColor="bgColor"
-                      _hover={{ bg: "main", color: "white" }}
-                    >
-                      {isOpen ? "Hide" : "Show"} equipment
-                    </Button>
-                  </PopoverTrigger>
-                  <Portal>
-                    <PopoverContent w="800px">
-                      <PopoverCloseButton />
-                      <PopoverBody>
-                        <TableContainer>
-                          <Table variant="striped" colorScheme="#323b4b">
-                            <Tbody>
-                              {/* {console.log(MyDevices)} */}
-                              <Tr>
-                                <Td>{res.name}</Td>
-                                <Td>{res.info}</Td>
-                                <Td>{res.sn}</Td>
-                              </Tr>
-                            </Tbody>
-                          </Table>
-                        </TableContainer>
-                        <Button
-                          mt={4}
-                          bgColor="bgColor"
-                          onClick={onClose}
-                          _hover={{ bg: "main", color: "white" }}
-                        >
-                          Hide
-                        </Button>
-                      </PopoverBody>
-                    </PopoverContent>
-                  </Portal>
-                </>
-              )}
-            </Popover>
+            {devices.length > 0 ? (
+              <Popover closeOnBlur={false} placement="bottom">
+                {({ isOpen, onClose }) => (
+                  <>
+                    <PopoverTrigger>
+                      <Button
+                        bgColor="bgColor"
+                        _hover={{ bg: "main", color: "white" }}
+                      >
+                        {isOpen ? "Hide" : "Show"} equipment
+                      </Button>
+                    </PopoverTrigger>
+                    <Portal>
+                      <PopoverContent w="800px">
+                        <PopoverCloseButton />
+                        <PopoverBody>
+                          <TableContainer>
+                            <Table variant="striped" colorScheme="#323b4b">
+                              <Tbody>
+                                {devices.map((dev) => {
+                                  const filRes = MyDevices.find(
+                                    (device) => device.id === dev
+                                  );
+                                  return (
+                                    <Tr key={filRes.id}>
+                                      <Td>{filRes.name}</Td>
+                                      <Td>{filRes.info}</Td>
+                                      <Td>{filRes.sn}</Td>
+                                    </Tr>
+                                  );
+                                })}
+                              </Tbody>
+                            </Table>
+                          </TableContainer>
+                          <Button
+                            mt={4}
+                            bgColor="bgColor"
+                            onClick={onClose}
+                            _hover={{ bg: "main", color: "white" }}
+                          >
+                            Hide
+                          </Button>
+                        </PopoverBody>
+                      </PopoverContent>
+                    </Portal>
+                  </>
+                )}
+              </Popover>
+            ) : (
+              <Center>
+                <Text fontWeight="bold">Without equipment</Text>
+              </Center>
+            )}
           </Flex>
         );
       })}
