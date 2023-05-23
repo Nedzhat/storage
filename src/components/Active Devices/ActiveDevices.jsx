@@ -1,28 +1,34 @@
-import { AddIcon } from "@chakra-ui/icons";
-import { Box, Button, Flex, Heading, IconButton, Text } from "@chakra-ui/react";
-import MyDevices from "../../../MyDevices.json";
+import {
+  Box,
+  Flex,
+  Heading,
+  IconButton,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import {
   MdOutlineImportantDevices,
   MdOutlineSummarize,
   MdOutlineDeleteForever,
 } from "react-icons/md";
+import MyDevices from "../../../MyDevices.json";
+import { ModalWindow } from "../ModalWindow/ModalWindow";
+import { useState } from "react";
 
 export const ActiveDevices = () => {
+  const [idDevices, setIdDevices] = useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const clickHandler = (id) => {
-    console.log(id);
+    setIdDevices(id);
+    onOpen();
   };
 
   return (
     <Box>
+      <ModalWindow idDevices={idDevices} isOpen={isOpen} onClose={onClose} />
       <Flex justifyContent="space-between" p={8}>
         <Heading size="lg">My Equipment</Heading>
-        <Button
-          leftIcon={<AddIcon />}
-          variant="outline"
-          _hover={{ bg: "main", color: "white" }}
-        >
-          Register
-        </Button>
       </Flex>
       <Flex flexWrap="wrap" justifyContent="space-between" px={8} gap="15px 0">
         {MyDevices.map(({ id, name, info, sn, type }) => {
@@ -40,7 +46,9 @@ export const ActiveDevices = () => {
               <Flex justifyContent="space-between">
                 <MdOutlineImportantDevices size={30} color="main" />
                 <IconButton
-                  onClick={() => clickHandler(id)}
+                  onClick={() => {
+                    clickHandler(id);
+                  }}
                   variant="outline"
                   colorScheme="#323b4b"
                   aria-label="Delete"
