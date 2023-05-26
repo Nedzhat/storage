@@ -45,7 +45,7 @@
         "id": 17,
         "name": "Darcy Buck",
         "position": "QA",
-        "devices": []
+        "devices": [6]
     },
     {
         "id": 18,
@@ -61,9 +61,9 @@
     },
     {
         "id": 20,
-        "name": "Darcy Buck",
+        "name": "Antony Martial",
         "position": "QA",
-        "devices": []
+        "devices": [7]
     },
     {
         "id": 21,

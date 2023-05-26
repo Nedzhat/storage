@@ -12,7 +12,7 @@ import {
   MdOutlineDeleteForever,
 } from "react-icons/md";
 import MyDevices from "../../../MyDevices.json";
-import { ModalWindow } from "../ModalWindow/ModalWindow";
+import { ModalDeleteDevice } from "../ModalDeleteDevice/ModalDeleteDevice";
 import { useState } from "react";
 
 export const ActiveDevices = () => {
@@ -26,7 +26,11 @@ export const ActiveDevices = () => {
 
   return (
     <Box>
-      <ModalWindow idDevices={idDevices} isOpen={isOpen} onClose={onClose} />
+      <ModalDeleteDevice
+        idDevices={idDevices}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
       <Flex justifyContent="space-between" p={8}>
         <Heading size="lg">My Equipment</Heading>
       </Flex>

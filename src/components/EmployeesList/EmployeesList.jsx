@@ -17,27 +17,9 @@ import {
 } from "@chakra-ui/react";
 
 import employees from "../../../employees.json";
-import MyDevices from "../../../MyDevices.json";
+import allDevices from "../../../allDevices.json";
 
 export const EmployeesList = () => {
-  // console.log(employees);
-  // console.log(MyDevices);
-
-  const filterDevices = (devices) => {
-    const r = devices.find((dev) => dev.id === employees[0].devices[1]);
-
-    return r;
-  };
-
-  const res = filterDevices(MyDevices);
-
-  const fil = (dev) => {
-    // console.log(dev);
-    const filRes = [];
-    filRes.push(MyDevices.filter((device) => device.id === dev));
-    console.log(filRes);
-  };
-
   return (
     <Flex flexWrap="wrap" mt={8} justifyContent="space-between" gap="20px 0">
       {employees.map(({ id, name, position, devices }) => {
@@ -80,7 +62,7 @@ export const EmployeesList = () => {
                             <Table variant="striped" colorScheme="#323b4b">
                               <Tbody>
                                 {devices.map((dev) => {
-                                  const filRes = MyDevices.find(
+                                  const filRes = allDevices.find(
                                     (device) => device.id === dev
                                   );
                                   return (
@@ -119,5 +101,3 @@ export const EmployeesList = () => {
     </Flex>
   );
 };
-
-// myDevices.map => devices []

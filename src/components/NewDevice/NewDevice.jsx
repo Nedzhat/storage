@@ -1,5 +1,5 @@
 import { AddIcon } from "@chakra-ui/icons";
-import React from "react";
+import { useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -10,7 +10,6 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  FormControl,
   FormLabel,
   Input,
   Radio,
@@ -19,36 +18,30 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
+import employees from "../../../employees.json";
 
 export const NewDevice = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const firstField = React.useRef();
-  const [status, setStatus] = React.useState("Use");
+  const firstField = useRef();
+  const [status, setStatus] = useState("use");
 
   const submitForm = (e) => {
     e.preventDefault();
 
-    const location = (e) => {
-      let res = "";
-
-      if (status === "Use") {
-        res = "none";
-      } else {
-        res = e.target.location.value;
-      }
-      return res;
-    };
+    const { name, info, sn, type, location, employee } = e.target;
 
     const res = {
       id: Date.now(),
-      name: e.target.name.value,
-      info: e.target.info.value,
-      sn: e.target.sn.value,
-      type: e.target.type.value,
-      status: status,
-      location: location(e),
+      name: name.value,
+      info: info.value,
+      sn: sn.value,
+      type: type.value,
+      status,
+      location: location.value ? location.value : "none",
+      employee: employee.value ? employee.value : "none",
     };
     console.log(res);
+    onClose();
   };
 
   return (
@@ -78,11 +71,12 @@ export const NewDevice = () => {
             <form id="addDevice" onSubmit={submitForm}>
               <Stack spacing="24px">
                 <Box>
-                  <FormLabel htmlFor="username">Name</FormLabel>
+                  <FormLabel htmlFor="name">Name</FormLabel>
                   <Input
                     ref={firstField}
                     id="name"
                     placeholder="Please enter device's name"
+                    isRequired
                   />
                 </Box>
                 <Box>
@@ -90,11 +84,16 @@ export const NewDevice = () => {
                   <Input
                     id="info"
                     placeholder="Please enter main info about device"
+                    isRequired
                   />
                 </Box>
                 <Box>
                   <FormLabel htmlFor="sn">Serial Number</FormLabel>
-                  <Input id="sn" placeholder="Please enter serial number" />
+                  <Input
+                    id="sn"
+                    placeholder="Please enter serial number"
+                    isRequired
+                  />
                 </Box>
                 <Box>
                   <FormLabel htmlFor="type">Select type</FormLabel>
@@ -107,23 +106,39 @@ export const NewDevice = () => {
                 </Box>
                 <RadioGroup onChange={setStatus} value={status}>
                   <Stack direction="row" gap="10px">
-                    <Radio value="Use">Use</Radio>
-                    <Radio value="Stock">Stock</Radio>
+                    <Radio value="use">Use</Radio>
+                    <Radio value="stock">Stock</Radio>
                   </Stack>
                 </RadioGroup>
                 <Box>
-                  <FormLabel htmlFor="location">Select location</FormLabel>
+                  <FormLabel htmlFor="location">
+                    Select location or employee
+                  </FormLabel>
                   <Select
                     id="location"
-                    defaultValue="Closet-1"
-                    isDisabled={status === "Use"}
+                    defaultValue="none"
+                    isDisabled={status === "use"}
+                    placeholder="Select location"
                   >
-                    {/* <option value="None">None</option> */}
                     <option value="Closet-1">Closet-1</option>
                     <option value="Closet-2">Closet-2</option>
                     <option value="Closet-3">Closet-3</option>
                   </Select>
                 </Box>
+                <Select
+                  id="employee"
+                  defaultValue="none"
+                  isDisabled={status === "stock"}
+                  placeholder="Select employee"
+                >
+                  {employees.map(({ id, name }) => {
+                    return (
+                      <option key={id} value={name}>
+                        {name}
+                      </option>
+                    );
+                  })}
+                </Select>
               </Stack>
             </form>
           </DrawerBody>

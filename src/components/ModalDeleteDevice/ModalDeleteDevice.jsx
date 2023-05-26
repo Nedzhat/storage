@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -8,10 +9,14 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
 } from "@chakra-ui/react";
+import { AiOutlineUser } from "react-icons/ai";
+import { BsArrowRight } from "react-icons/bs";
+import { SiAirtable } from "react-icons/si";
 import allDevices from "../../../allDevices.json";
 
-export const ModalWindow = ({ idDevices, isOpen, onClose }) => {
+export const ModalDeleteDevice = ({ idDevices, isOpen, onClose }) => {
   let selectDevice;
   for (const device of allDevices) {
     if (device.id === idDevices) {
@@ -34,9 +39,17 @@ export const ModalWindow = ({ idDevices, isOpen, onClose }) => {
           <ModalBody>
             {selectDevice ? (
               <Box>
-                <p>{selectDevice.name}</p>
-                <p>{selectDevice.info}</p>
-                <p>{selectDevice.sn}</p>
+                <Center gap="30px" py={3}>
+                  <AiOutlineUser size="35px" />
+                  <BsArrowRight size="35px" />
+                  <SiAirtable size="35px" />
+                </Center>
+                <Text fontWeight="bold">{selectDevice.name}</Text>
+                <Text fontSize="sm" color="second">
+                  {selectDevice.type}
+                </Text>
+                <Text fontSize="sm">{selectDevice.info}</Text>
+                <Text color="second">S/N: {selectDevice.sn}</Text>
               </Box>
             ) : (
               ""
