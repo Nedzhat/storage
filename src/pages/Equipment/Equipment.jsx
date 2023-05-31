@@ -4,7 +4,7 @@ import { EquipmentList } from "../../components/EquipmentList/EquipmentList";
 import { FinderEquipment } from "../../components/FinderEquipment/FinderEquipment";
 import { FilterEquipment } from "../../components/FilterEquipment/FilterEquipment";
 
-export const Equipment = () => {
+const Equipment = () => {
   return (
     <Box as="section" w="60%" bg="bgColor" p={8} h="100%">
       <FinderEquipment />
@@ -13,3 +13,5 @@ export const Equipment = () => {
     </Box>
   );
 };
+
+export default Equipment;

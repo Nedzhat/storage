@@ -5,7 +5,6 @@ import {
   AiOutlineLaptop,
   AiOutlineFundProjectionScreen,
   AiOutlineInbox,
-  AiOutlineDeliveredProcedure,
 } from "react-icons/ai";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { linkStyles, svgStyle } from "./Navigation.styled";
