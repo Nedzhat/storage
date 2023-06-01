@@ -19,11 +19,14 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import employees from "../../../employees.json";
+import { useDispatch } from "react-redux";
+import { addDevice } from "../../redux/devices/devicesSlice";
 
 export const NewDevice = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = useRef();
   const [status, setStatus] = useState("use");
+  const dispatch = useDispatch();
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -31,7 +34,7 @@ export const NewDevice = () => {
     const { name, info, sn, type, location, employee } = e.target;
 
     const res = {
-      id: Date.now(),
+      // id: Date.now(),
       name: name.value,
       info: info.value,
       sn: sn.value,
@@ -41,6 +44,17 @@ export const NewDevice = () => {
       employee: employee.value ? employee.value : "none",
     };
     console.log(res);
+    dispatch(
+      addDevice({
+        name: name.value,
+        info: info.value,
+        sn: sn.value,
+        type: type.value,
+        status,
+        location: location.value ? location.value : "none",
+        employee: employee.value ? employee.value : "none",
+      })
+    );
     onClose();
   };
 
@@ -89,15 +103,11 @@ export const NewDevice = () => {
                 </Box>
                 <Box>
                   <FormLabel htmlFor="sn">Serial Number</FormLabel>
-                  <Input
-                    id="sn"
-                    placeholder="Please enter serial number"
-                    isRequired
-                  />
+                  <Input id="sn" placeholder="Please enter serial number" />
                 </Box>
                 <Box>
                   <FormLabel htmlFor="type">Select type</FormLabel>
-                  <Select id="type" defaultValue="Laptop">
+                  <Select id="type" defaultValue="Laptop" isRequired>
                     <option value="Laptop">Laptop</option>
                     <option value="DevKit">DevKit</option>
                     <option value="Monitor">Monitor</option>
@@ -119,6 +129,7 @@ export const NewDevice = () => {
                     defaultValue="none"
                     isDisabled={status === "use"}
                     placeholder="Select location"
+                    isRequired
                   >
                     <option value="Closet-1">Closet-1</option>
                     <option value="Closet-2">Closet-2</option>
@@ -130,6 +141,7 @@ export const NewDevice = () => {
                   defaultValue="none"
                   isDisabled={status === "stock"}
                   placeholder="Select employee"
+                  isRequired
                 >
                   {employees.map(({ id, name }) => {
                     return (
