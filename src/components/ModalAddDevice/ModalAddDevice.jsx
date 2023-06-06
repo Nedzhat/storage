@@ -1,3 +1,6 @@
+import { useSelector } from "react-redux";
+import { getDevices } from "../../redux/selectors";
+
 import {
   Box,
   Button,
@@ -14,18 +17,18 @@ import {
 import { AiOutlineUser } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
 import { SiAirtable } from "react-icons/si";
-import allDevices from "../../../allDevices.json";
 
 export const ModalAddDevice = ({ idDevices, isOpen, onClose }) => {
+  const devices = useSelector(getDevices);
   let selectDevice;
-  for (const device of allDevices) {
+  for (const device of devices) {
     if (device.id === idDevices) {
       selectDevice = device;
     }
   }
 
   const takeIdDevice = (id) => {
-    console.log(id);
+    console.log(`Added devive in my list with ${id} id`);
     onClose();
   };
 

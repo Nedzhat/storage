@@ -1,7 +1,7 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 import allDevices from "../../../allDevices.json";
 
-const devicesSlice = createSlice({
+const allEquipmentSlice = createSlice({
   name: "devices",
   initialState: allDevices,
   reducers: {
@@ -31,6 +31,6 @@ const devicesSlice = createSlice({
   },
 });
 
-export const { addDevice, deleteDevice } = devicesSlice.actions;
+export const { addDevice, deleteDevice } = allEquipmentSlice.actions;
 
-export const devicesReducer = devicesSlice.reducer;
+export const devicesReducer = allEquipmentSlice.reducer;

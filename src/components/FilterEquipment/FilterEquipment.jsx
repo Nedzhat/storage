@@ -3,8 +3,8 @@ import { buttonStyles } from "./FilterEquipment.styled";
 import { resTypesDevices } from "../Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { getStatusFilter } from "../../redux/selectors";
-import { statusFilters } from "../../redux/filterDevice/constants";
-import { setStatusFilter } from "../../redux/filterDevice/filterDeviceSlice";
+import { statusFilters } from "../../redux/constants";
+import { setStatusFilter } from "../../redux/slices/filterDeviceSlice";
 
 export const FilterEquipment = () => {
   const dispatch = useDispatch();

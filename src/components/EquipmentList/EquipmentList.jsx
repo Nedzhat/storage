@@ -6,8 +6,8 @@ import { AddIcon } from "@chakra-ui/icons";
 import { MdOutlineImportantDevices } from "react-icons/md";
 
 import { ModalAddDevice } from "../ModalAddDevice/ModalAddDevice";
+import { statusFilters } from "../../redux/constants";
 import { getDevices, getStatusFilter } from "../../redux/selectors";
-import { statusFilters } from "../../redux/filterDevice/constants";
 
 const getVisibleDevice = (devices, statusFilter) => {
   switch (statusFilter) {

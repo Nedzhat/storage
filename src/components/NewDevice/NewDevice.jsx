@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import employees from "../../../employees.json";
 import { useDispatch } from "react-redux";
-import { addDevice } from "../../redux/devices/devicesSlice";
+import { addDevice } from "../../redux/slices/allEquipmentSlice";
 
 export const NewDevice = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

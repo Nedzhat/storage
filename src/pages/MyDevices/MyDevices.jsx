@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { ActiveDevices } from "../../components/Active Devices/ActiveDevices";
+import { ActiveDevices } from "../../components/ActiveDevices/ActiveDevices";
 import { History } from "../../components/History/History";
 
 const MyDevices = () => {
