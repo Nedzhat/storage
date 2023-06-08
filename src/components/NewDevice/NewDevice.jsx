@@ -1,5 +1,7 @@
-import { AddIcon } from "@chakra-ui/icons";
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { AddIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -18,32 +20,22 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
+
 import employees from "../../../employees.json";
-import { useDispatch } from "react-redux";
-import { addDevice } from "../../redux/slices/allEquipmentSlice";
+import { addDevice } from "../../redux/Equipment/allEquipmentSlice";
 
 export const NewDevice = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const firstField = useRef();
   const [status, setStatus] = useState("use");
   const dispatch = useDispatch();
+
+  const firstField = useRef();
 
   const submitForm = (e) => {
     e.preventDefault();
 
     const { name, info, sn, type, location, employee } = e.target;
 
-    const res = {
-      // id: Date.now(),
-      name: name.value,
-      info: info.value,
-      sn: sn.value,
-      type: type.value,
-      status,
-      location: location.value ? location.value : "none",
-      employee: employee.value ? employee.value : "none",
-    };
-    console.log(res);
     dispatch(
       addDevice({
         name: name.value,
@@ -112,6 +104,12 @@ export const NewDevice = () => {
                     <option value="DevKit">DevKit</option>
                     <option value="Monitor">Monitor</option>
                     <option value="Ram">Ram</option>
+                    <option value="Phone">Phone</option>
+                    <option value="Power station">Power station</option>
+                    <option value="Dev board">Dev board</option>
+                    <option value="Power bank">Power bank</option>
+                    <option value="Mouse">Mouse</option>
+                    <option value="Keyboard">Keyboard</option>
                   </Select>
                 </Box>
                 <RadioGroup onChange={setStatus} value={status}>
@@ -131,9 +129,9 @@ export const NewDevice = () => {
                     placeholder="Select location"
                     isRequired
                   >
-                    <option value="Closet-1">Closet-1</option>
-                    <option value="Closet-2">Closet-2</option>
-                    <option value="Closet-3">Closet-3</option>
+                    <option value="Closet-1">Closet A</option>
+                    <option value="Closet-2">Closet B</option>
+                    <option value="Closet-3">Closet C</option>
                   </Select>
                 </Box>
                 <Select

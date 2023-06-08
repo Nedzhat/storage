@@ -1,34 +1,40 @@
+import { useSelector } from "react-redux";
+import { getUser, getUserDevices } from "../../redux/selectors";
+
 import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
 
 import { AiOutlineUser } from "react-icons/ai";
 import { HiOutlineLogout } from "react-icons/hi";
 import { MdOutlineImportantDevices } from "react-icons/md";
-import devices from "../../../MyDevices.json";
-
-const type = devices.reduce((allType, device) => {
-  allType.push(device.type);
-  return allType;
-}, []);
-
-const getType = (acc, type) => {
-  if (!acc.hasOwnProperty(type)) {
-    acc[type] = 0;
-  }
-  acc[type] += 1;
-  return acc;
-};
-
-const countType = (type) => type.reduce(getType, {});
-const typeCount = countType(type);
-export const resTypesDevices = Object.entries(typeCount);
 
 export const Sidebar = () => {
+  const user = useSelector(getUser);
+
+  const devices = useSelector(getUserDevices);
+
+  const type = devices.reduce((allType, device) => {
+    allType.push(device.type);
+    return allType;
+  }, []);
+
+  const getType = (acc, type) => {
+    if (!acc.hasOwnProperty(type)) {
+      acc[type] = 0;
+    }
+    acc[type] += 1;
+    return acc;
+  };
+
+  const countType = (type) => type.reduce(getType, {});
+  const typeCount = countType(type);
+  const resTypesDevices = Object.entries(typeCount);
+
   return (
     <Box p={8} w="20%">
       <Flex gap="10px" justifyContent="center">
         <AiOutlineUser size="25px" />
         <Text fontWeight="bold" fontSize="20px">
-          Name Surname
+          {user.name ? user.name : "Username"}
         </Text>
       </Flex>
       <Button

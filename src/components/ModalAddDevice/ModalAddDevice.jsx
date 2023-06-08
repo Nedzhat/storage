@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDevices } from "../../redux/selectors";
 
 import {
@@ -17,9 +17,12 @@ import {
 import { AiOutlineUser } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
 import { SiAirtable } from "react-icons/si";
+import { addDeviceToUser } from "../../redux/userDevices/userDevicesSlice";
 
 export const ModalAddDevice = ({ idDevices, isOpen, onClose }) => {
   const devices = useSelector(getDevices);
+  const dispatch = useDispatch();
+
   let selectDevice;
   for (const device of devices) {
     if (device.id === idDevices) {
@@ -27,8 +30,18 @@ export const ModalAddDevice = ({ idDevices, isOpen, onClose }) => {
     }
   }
 
-  const takeIdDevice = (id) => {
-    console.log(`Added devive in my list with ${id} id`);
+  const takeIdDevice = ({
+    name,
+    info,
+    sn,
+    type,
+    location,
+    status,
+    employee,
+  }) => {
+    dispatch(
+      addDeviceToUser({ name, info, sn, type, location, status, employee })
+    );
     onClose();
   };
 
@@ -65,7 +78,7 @@ export const ModalAddDevice = ({ idDevices, isOpen, onClose }) => {
             </Button>
             <Button
               onClick={() => {
-                takeIdDevice(selectDevice.id);
+                takeIdDevice(selectDevice);
               }}
               variant="ghost"
             >

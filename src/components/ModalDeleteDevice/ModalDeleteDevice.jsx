@@ -1,3 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDevices } from "../../redux/selectors";
+import { deleteDeviceFromUser } from "../../redux/userDevices/userDevicesSlice";
+
 import {
   Box,
   Button,
@@ -11,12 +15,15 @@ import {
   ModalOverlay,
   Text,
 } from "@chakra-ui/react";
+
 import { AiOutlineUser } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
 import { SiAirtable } from "react-icons/si";
-import allDevices from "../../../allDevices.json";
 
 export const ModalDeleteDevice = ({ idDevices, isOpen, onClose }) => {
+  const dispatch = useDispatch();
+  const allDevices = useSelector(getUserDevices);
+
   let selectDevice;
   for (const device of allDevices) {
     if (device.id === idDevices) {
@@ -25,7 +32,7 @@ export const ModalDeleteDevice = ({ idDevices, isOpen, onClose }) => {
   }
 
   const takeIdDevice = (id) => {
-    console.log(id);
+    dispatch(deleteDeviceFromUser(id));
     onClose();
   };
 
@@ -37,7 +44,7 @@ export const ModalDeleteDevice = ({ idDevices, isOpen, onClose }) => {
           <ModalHeader>Return device for sorting table</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {selectDevice ? (
+            {selectDevice && (
               <Box>
                 <Center gap="30px" py={3}>
                   <AiOutlineUser size="35px" />
@@ -51,8 +58,6 @@ export const ModalDeleteDevice = ({ idDevices, isOpen, onClose }) => {
                 <Text fontSize="sm">{selectDevice.info}</Text>
                 <Text color="second">S/N: {selectDevice.sn}</Text>
               </Box>
-            ) : (
-              ""
             )}
           </ModalBody>
 

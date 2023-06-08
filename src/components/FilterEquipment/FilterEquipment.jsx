@@ -1,10 +1,12 @@
-import { Box, Button, Center } from "@chakra-ui/react";
-import { buttonStyles } from "./FilterEquipment.styled";
-import { resTypesDevices } from "../Sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { getStatusFilter } from "../../redux/selectors";
-import { statusFilters } from "../../redux/constants";
-import { setStatusFilter } from "../../redux/slices/filterDeviceSlice";
+
+import { Box, Button, Center } from "@chakra-ui/react";
+
+import { buttonStyles } from "./FilterEquipment.styled";
+
+import { statusFilters } from "../../redux/filterEquipment/constants";
+import { setStatusFilter } from "../../redux/filterEquipment/filterDeviceSlice";
 
 export const FilterEquipment = () => {
   const dispatch = useDispatch();
@@ -38,13 +40,15 @@ export const FilterEquipment = () => {
         </Button>
       </Center>
       <Center mt={3} mb={6} gap="20px">
-        {resTypesDevices.map((device, idx) => {
-          return (
-            <Button key={idx} sx={buttonStyles}>
-              {device[0]}
-            </Button>
-          );
-        })}
+        {["Laptop", "RAM", "Monitor", "DevKit", "Phone", "Power Station"].map(
+          (device, idx) => {
+            return (
+              <Button key={idx} sx={buttonStyles}>
+                {device}
+              </Button>
+            );
+          }
+        )}
       </Center>
     </Box>
   );

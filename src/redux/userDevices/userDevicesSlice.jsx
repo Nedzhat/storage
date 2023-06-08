@@ -1,10 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, nanoid } from "@reduxjs/toolkit";
+import allDevices from "../../../allDevices.json";
 
-const myDevicesSlice = createSlice({
-  name: "myDevices",
-  initialState: [],
+const userDevicesSlice = createSlice({
+  name: "userDevices",
+  initialState: allDevices,
   reducers: {
-    addDevice: {
+    addDeviceToUser: {
       reducer(state, action) {
         state.push(action.payload);
       },
@@ -23,13 +24,14 @@ const myDevicesSlice = createSlice({
         };
       },
     },
-    deleteDevice(state, action) {
+    deleteDeviceFromUser(state, action) {
       const index = state.findIndex((task) => task.id === action.payload);
       state.splice(index, 1);
     },
   },
 });
 
-export const { addDevice, deleteDevice } = myDevicesSlice.actions;
+export const { addDeviceToUser, deleteDeviceFromUser } =
+  userDevicesSlice.actions;
 
-export const devicesReducer = myDevicesSlice.reducer;
+export const userDevicesReducer = userDevicesSlice.reducer;

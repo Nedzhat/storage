@@ -1,33 +1,37 @@
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { auth, provider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
-import { useSelector } from "react-redux";
+
 import { getUser } from "../../redux/selectors";
+import { setUser } from "../../redux/user/userSlice";
+import { Box } from "@chakra-ui/react";
 
 const Login = () => {
-  const [value, setValue] = useState("");
   const user = useSelector(getUser);
-  console.log(user);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      setValue(data.user.email);
-      localStorage.setItem("email", data.user.email);
+    signInWithPopup(auth, provider).then(({ user }) => {
+      dispatch(
+        setUser({
+          name: user.displayName,
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        })
+      );
     });
   };
 
-  useEffect(() => {
-    setValue(localStorage.getItem("email"));
-  });
-
   return (
-    <div>
-      {value ? (
-        <p>Hello {value} </p>
+    <Box as="section" w="60%" bg="bgColor" p={8} h="100vh">
+      {user.email ? (
+        <p>Hello {user.email} </p>
       ) : (
         <button onClick={handleClick}>Sign In with Google</button>
       )}
-    </div>
+    </Box>
   );
 };
 

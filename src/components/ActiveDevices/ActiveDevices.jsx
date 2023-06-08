@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Box,
   Flex,
@@ -11,13 +13,16 @@ import {
   MdOutlineSummarize,
   MdOutlineDeleteForever,
 } from "react-icons/md";
-import MyDevices from "../../../MyDevices.json";
+
 import { ModalDeleteDevice } from "../ModalDeleteDevice/ModalDeleteDevice";
-import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getUserDevices } from "../../redux/selectors";
 
 export const ActiveDevices = () => {
   const [idDevices, setIdDevices] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const userDevices = useSelector(getUserDevices);
 
   const clickHandler = (id) => {
     setIdDevices(id);
@@ -35,8 +40,8 @@ export const ActiveDevices = () => {
         <Heading size="lg">My Equipment</Heading>
       </Flex>
       <Flex flexWrap="wrap" px={8} gap="15px">
-        {MyDevices.length > 0 ? (
-          MyDevices.map(({ id, name, info, sn, type }) => {
+        {userDevices.length > 0 ? (
+          userDevices.map(({ id, name, info, sn, type }) => {
             return (
               <Flex
                 key={id}
@@ -81,6 +86,7 @@ export const ActiveDevices = () => {
             bg="white"
             p={3}
             borderRadius="12px"
+            h="120px"
           >
             <MdOutlineSummarize size={30} color="main" />
             <Text fontWeight="bold">Empty</Text>
