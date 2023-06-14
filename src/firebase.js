@@ -10,8 +10,17 @@ const firebaseConfig = {
   appId: process.env.VITE_FIREBASE_APP_ID,
 };
 
+// Initialize app
+
 const app = initializeApp(firebaseConfig);
+
+// Authentication
+
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+
+// Database
+
+// exports
 
 export { auth, provider };

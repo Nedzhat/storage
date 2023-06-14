@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { SharedLayout } from "./SharedLayout";
 
 const MyDevices = lazy(() => import("../pages/MyDevices/MyDevices"));
-const Login = lazy(() => import("../pages/Login/Login"));
+// const Login = lazy(() => import("../pages/Login/Login"));
 const People = lazy(() => import("../pages/People/People"));
 const Equipment = lazy(() => import("../pages/Equipment/Equipment"));
 const Projects = lazy(() => import("../pages/Projects/Projects"));
@@ -17,7 +17,7 @@ function App() {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<MyDevices />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/people" element={<People />} />
         <Route path="/equipment" element={<Equipment />} />
         <Route path="/projects" element={<Projects />} />
