@@ -1,86 +1,100 @@
 [
     {
-        "id": 10,
+        "email": "",
         "name": "Brian Haney",
         "position": "DevOps",
-        "devices": [1,5]
+        "equipment": [1,5],
+        "projects": []
     },
     {
-        "id": 11,
+        "email": "",
         "name": "Damon Mccoy",
         "position": "PM",
-        "devices": [2]
+        "equipment": [2],
+        "projects": []
     },
     {
-        "id": 12,
+        "email": "",
         "name": "Sabrina Franco",
         "position": "Marketing",
-        "devices": []
+        "equipment": [],
+        "projects": []
     },
     {
-        "id": 13,
+        "email": "",
         "name": "Fintan Woodard",
         "position": "Copywriter",
-        "devices": [1,3]
+        "equipment": [1,3],
+        "projects": []
     },
     {
-        "id": 14,
+        "email": "",
         "name": "Jackson Kane",
         "position": "Designer",
-        "devices": [4]
+        "equipment": [4],
+        "projects": []
     },
     {
-        "id": 15,
+        "email": "",
         "name": "Caitlin Carlson",
         "position": "HR",
-        "devices": [5]
+        "equipment": [5],
+        "projects": []
     },
     {
-        "id": 16,
+        "email": "",
         "name": "Khalid Strong",
         "position": "Embedded Engineer",
-        "devices": [2]
+        "equipment": [2],
+        "projects": []
     },
     {
-        "id": 17,
+        "email": "",
         "name": "Darcy Buck",
         "position": "QA",
-        "devices": [6]
+        "equipment": [6],
+        "projects": []
     },
     {
-        "id": 18,
+        "email": "",
         "name": "Darcy Buck",
         "position": "QA",
-        "devices": []
+        "equipment": [],
+        "projects": []
     },
     {
-        "id": 19,
+        "email": "",
         "name": "Darcy Buck",
         "position": "QA",
-        "devices": []
+        "equipment": [],
+        "projects": []
     },
     {
-        "id": 20,
+        "email": "",
         "name": "Antony Martial",
         "position": "QA",
-        "devices": [7]
+        "equipment": [7],
+        "projects": []
     },
     {
-        "id": 21,
+        "email": "",
         "name": "Darcy Buck",
         "position": "QA",
-        "devices": [1,2,3,4,5,6,7,8,9]
+        "equipment": [1,2,3,4],
+        "projects": ["Apple", "Mango"]
     },
     {
-        "id": 22,
+        "email": "",
         "name": "Darcy Buck",
         "position": "QA",
-        "devices": []
+        "equipment": [],
+        "projects": []
     },
     {
-        "id": 23,
+        "email": "",
         "name": "Darcy Buck",
         "position": "QA",
-        "devices": []
+        "equipment": [],
+        "projects": []
     }
 ]

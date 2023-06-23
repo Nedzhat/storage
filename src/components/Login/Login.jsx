@@ -1,12 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { auth, provider } from "../../firebase";
-import { signInWithPopup } from "firebase/auth";
-
+import { logIn } from "../../redux/user/operation";
 import { getUser } from "../../redux/selectors";
-import { setUser } from "../../redux/user/userSlice";
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 
+import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 
 export const Login = () => {
@@ -14,17 +11,7 @@ export const Login = () => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    signInWithPopup(auth, provider).then(({ user }) => {
-      console.log(user);
-      dispatch(
-        setUser({
-          name: user.displayName,
-          email: user.email,
-          id: user.uid,
-          token: user.accessToken,
-        })
-      );
-    });
+    dispatch(logIn());
   };
 
   return (

@@ -22,7 +22,7 @@ import allDevices from "../../../allDevices.json";
 export const EmployeesList = () => {
   return (
     <Flex flexWrap="wrap" mt={8} justifyContent="space-between" gap="20px 0">
-      {employees.map(({ id, name, position, devices }) => {
+      {employees.map(({ id, name, position, equipment }) => {
         return (
           <Flex
             key={id}
@@ -42,7 +42,7 @@ export const EmployeesList = () => {
               </Text>
             </Flex>
             <Text fontSize="sm">{position}</Text>
-            {devices.length > 0 ? (
+            {equipment.length > 0 ? (
               <Popover closeOnBlur={false} placement="bottom">
                 {({ isOpen, onClose }) => (
                   <>
@@ -61,7 +61,7 @@ export const EmployeesList = () => {
                           <TableContainer>
                             <Table variant="striped" colorScheme="#323b4b">
                               <Tbody>
-                                {devices.map((dev) => {
+                                {equipment.map((dev) => {
                                   const filRes = allDevices.find(
                                     (device) => device.id === dev
                                   );

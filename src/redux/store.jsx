@@ -19,7 +19,7 @@ import { userDevicesReducer } from "./userDevices/userDevicesSlice";
 const authPersistConfig = {
   key: "user",
   storage,
-  whitelist: ["token"],
+  whitelist: ["email"],
 };
 
 export const store = configureStore({
