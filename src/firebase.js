@@ -30,7 +30,7 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 provider.setCustomParameters({
-  hd: "sirinsoftware.com", // Замените на домен, который вы разрешили
+  hd: "sirinsoftware.com",
 });
 
 // Database
@@ -95,4 +95,4 @@ export const checkAuth = async (user) => {
 
 // exports
 
-export { auth, provider };
+export { auth, provider, queryEmployees, db };

@@ -3,8 +3,13 @@ import { Notify } from "notiflix/build/notiflix-notify-aio";
 import { logIn, logOut, refreshUser } from "./operation";
 
 const initialState = {
-  name: null,
-  email: null,
+  employee: {
+    name: null,
+    email: null,
+    equipment: [],
+    position: null,
+    projects: null,
+  },
   token: null,
   id: null,
   isLoggedIn: false,
@@ -21,8 +26,11 @@ const userSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
-        state.name = action.payload.name;
-        state.email = action.payload.email;
+        state.employee.name = action.payload.name;
+        state.employee.email = action.payload.email;
+        state.employee.equipment = action.payload.equipment;
+        state.employee.position = action.payload.position;
+        state.employee.projects = action.payload.projects;
         state.id = action.payload.id;
         state.isLoggedIn = true;
         state.isRefreshing = false;
@@ -33,9 +41,8 @@ const userSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(logOut.fulfilled, (state) => {
-        console.log("logout reducers");
-        state.name = null;
-        state.email = null;
+        state.employee.name = null;
+        state.employee.email = null;
         state.token = null;
         state.id = null;
         state.isLoggedIn = false;
@@ -45,8 +52,8 @@ const userSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.name = action.payload.name;
-        state.email = action.payload.email;
+        state.employee.name = action.payload.name;
+        state.employee.email = action.payload.email;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -57,3 +64,10 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+
+// .addCase(checkUserInDB.fulfilled, (state, action) => {
+//   console.log("checkUserInDB");
+//   state.employee.equipment = action.payload.equipment;
+//   state.employee.position = action.payload.position;
+//   state.employee.projects = action.payload.projects;
+// })

@@ -17,7 +17,7 @@ import { userReducer } from "./user/userSlice";
 import { userDevicesReducer } from "./userDevices/userDevicesSlice";
 
 const authPersistConfig = {
-  key: "user",
+  key: "user.employee",
   storage,
   whitelist: ["email"],
 };
