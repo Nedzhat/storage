@@ -11,10 +11,9 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import { devicesReducer } from "./Equipment/allEquipmentSlice";
+import { allEquipmentReducer } from "./Equipment/allEquipmentSlice";
 import { filterReducer } from "./filterEquipment/filterDeviceSlice";
 import { userReducer } from "./user/userSlice";
-import { userDevicesReducer } from "./userDevices/userDevicesSlice";
 
 const authPersistConfig = {
   key: "user.employee",
@@ -25,9 +24,8 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     user: persistReducer(authPersistConfig, userReducer),
-    devices: devicesReducer,
+    devices: allEquipmentReducer,
     filter: filterReducer,
-    userDevices: userDevicesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

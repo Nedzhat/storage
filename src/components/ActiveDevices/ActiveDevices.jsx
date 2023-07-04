@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import { getUser } from "../../redux/selectors";
 
 import {
   Box,
@@ -14,15 +17,13 @@ import {
   MdOutlineDeleteForever,
 } from "react-icons/md";
 
-import { ModalDeleteDevice } from "../ModalDeleteDevice/ModalDeleteDevice";
-import { useSelector } from "react-redux";
-import { getUserDevices } from "../../redux/selectors";
+import { ModalReturnDevice } from "../ModalReturnDevice/ModalReturnDevice";
 
 export const ActiveDevices = () => {
   const [idDevices, setIdDevices] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const userDevices = useSelector(getUserDevices);
+  const { equipment } = useSelector(getUser);
 
   const clickHandler = (id) => {
     setIdDevices(id);
@@ -31,7 +32,7 @@ export const ActiveDevices = () => {
 
   return (
     <Box>
-      <ModalDeleteDevice
+      <ModalReturnDevice
         idDevices={idDevices}
         isOpen={isOpen}
         onClose={onClose}
@@ -40,8 +41,8 @@ export const ActiveDevices = () => {
         <Heading size="lg">My Equipment</Heading>
       </Flex>
       <Flex flexWrap="wrap" px={8} gap="15px">
-        {userDevices.length > 0 ? (
-          userDevices.map(({ id, name, info, sn, type }) => {
+        {equipment.length > 0 ? (
+          equipment.map(({ id, name, info, sn, type }) => {
             return (
               <Flex
                 key={id}

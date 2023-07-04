@@ -43,6 +43,9 @@ const userSlice = createSlice({
       .addCase(logOut.fulfilled, (state) => {
         state.employee.name = null;
         state.employee.email = null;
+        state.employee.equipment = [];
+        state.employee.position = null;
+        state.employee.projects = null;
         state.token = null;
         state.id = null;
         state.isLoggedIn = false;
@@ -54,6 +57,10 @@ const userSlice = createSlice({
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.employee.name = action.payload.name;
         state.employee.email = action.payload.email;
+        state.employee.equipment = action.payload.equipment;
+        state.employee.position = action.payload.position;
+        state.employee.projects = action.payload.projects;
+        state.id = action.payload.id;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
@@ -64,10 +71,3 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
-
-// .addCase(checkUserInDB.fulfilled, (state, action) => {
-//   console.log("checkUserInDB");
-//   state.employee.equipment = action.payload.equipment;
-//   state.employee.position = action.payload.position;
-//   state.employee.projects = action.payload.projects;
-// })

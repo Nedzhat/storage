@@ -1,6 +1,4 @@
-export const getDevices = (state) => state.devices;
-
-export const getUserDevices = (state) => state.userDevices;
+export const getDevices = (state) => state.devices.items;
 
 export const getStatusFilter = (state) => state.filter.status;
 

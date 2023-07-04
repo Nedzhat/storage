@@ -17,7 +17,6 @@ import {
 import { AiOutlineUser } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
 import { SiAirtable } from "react-icons/si";
-import { addDeviceToUser } from "../../redux/userDevices/userDevicesSlice";
 
 export const ModalAddDevice = ({ idDevices, isOpen, onClose }) => {
   const devices = useSelector(getDevices);
@@ -39,9 +38,9 @@ export const ModalAddDevice = ({ idDevices, isOpen, onClose }) => {
     status,
     employee,
   }) => {
-    dispatch(
-      addDeviceToUser({ name, info, sn, type, location, status, employee })
-    );
+    // dispatch(
+    //   addDeviceToUser({ name, info, sn, type, location, status, employee })
+    // );
     onClose();
   };
 

@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 
 import employees from "../../../employees.json";
-import { addDevice } from "../../redux/Equipment/allEquipmentSlice";
+// import { addDevice } from "../../redux/Equipment/allEquipmentSlice";
 
 export const NewDevice = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,17 +36,17 @@ export const NewDevice = () => {
 
     const { name, info, sn, type, location, employee } = e.target;
 
-    dispatch(
-      addDevice({
-        name: name.value,
-        info: info.value,
-        sn: sn.value,
-        type: type.value,
-        status,
-        location: location.value ? location.value : "none",
-        employee: employee.value ? employee.value : "none",
-      })
-    );
+    // dispatch(
+    //   addDevice({
+    //     name: name.value,
+    //     info: info.value,
+    //     sn: sn.value,
+    //     type: type.value,
+    //     status,
+    //     location: location.value ? location.value : "none",
+    //     employee: employee.value ? employee.value : "none",
+    //   })
+    // );
     onClose();
   };
 
@@ -141,9 +141,9 @@ export const NewDevice = () => {
                   placeholder="Select employee"
                   isRequired
                 >
-                  {employees.map(({ id, name }) => {
+                  {employees.map(({ id, name }, idx) => {
                     return (
-                      <option key={id} value={name}>
+                      <option key={idx} value={name}>
                         {name}
                       </option>
                     );

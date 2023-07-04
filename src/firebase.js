@@ -75,24 +75,6 @@ const addDevice = async (device) => {
   return resDevice;
 };
 
-// Check auth
-
-export const checkAuth = async (user) => {
-  if (!user.email) {
-    console.log("User log out");
-    return;
-  }
-
-  const docRef = doc(db, "employees", user.email);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
-  } else {
-    console.log("No such document!");
-  }
-};
-
 // exports
 
-export { auth, provider, queryEmployees, db };
+export { auth, provider, db };

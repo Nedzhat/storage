@@ -22,10 +22,10 @@ import allDevices from "../../../allDevices.json";
 export const EmployeesList = () => {
   return (
     <Flex flexWrap="wrap" mt={8} justifyContent="space-between" gap="20px 0">
-      {employees.map(({ id, name, position, equipment }) => {
+      {employees.map(({ name, position, equipment }, idx) => {
         return (
           <Flex
-            key={id}
+            key={idx}
             flexDirection="column"
             w="100%"
             bg="white"

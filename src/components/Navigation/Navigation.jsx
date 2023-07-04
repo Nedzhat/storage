@@ -29,7 +29,7 @@ export const Navigation = () => {
         _activeLink={{ color: "white", bg: "main" }}
       >
         <AiOutlineTeam style={svgStyle} />
-        <Text fontWeight="bold">People</Text>
+        <Text fontWeight="bold">Employees</Text>
       </Box>
       <Box
         as={NavLink}

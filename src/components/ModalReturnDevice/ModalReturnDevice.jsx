@@ -1,6 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getUserDevices } from "../../redux/selectors";
-import { deleteDeviceFromUser } from "../../redux/userDevices/userDevicesSlice";
 
 import {
   Box,
@@ -19,20 +17,21 @@ import {
 import { AiOutlineUser } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
 import { SiAirtable } from "react-icons/si";
+import { getUser } from "../../redux/selectors";
 
-export const ModalDeleteDevice = ({ idDevices, isOpen, onClose }) => {
-  const dispatch = useDispatch();
-  const allDevices = useSelector(getUserDevices);
+export const ModalReturnDevice = ({ idDevices, isOpen, onClose }) => {
+  // const dispatch = useDispatch();
+  const { equipment } = useSelector(getUser);
 
   let selectDevice;
-  for (const device of allDevices) {
+  for (const device of equipment) {
     if (device.id === idDevices) {
       selectDevice = device;
     }
   }
 
   const takeIdDevice = (id) => {
-    dispatch(deleteDeviceFromUser(id));
+    console.log(id);
     onClose();
   };
 

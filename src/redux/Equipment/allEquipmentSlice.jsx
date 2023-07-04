@@ -1,36 +1,45 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-import allDevices from "../../../allDevices.json";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchDevices } from "./operation";
 
 const allEquipmentSlice = createSlice({
   name: "devices",
-  initialState: allDevices,
-  reducers: {
-    addDevice: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare({ name, info, sn, type, location, status, employee }) {
-        return {
-          payload: {
-            id: nanoid(),
-            name,
-            info,
-            sn,
-            type,
-            status,
-            location,
-            employee,
-          },
-        };
-      },
-    },
-    deleteDevice(state, action) {
-      const index = state.findIndex((task) => task.id === action.payload);
-      state.splice(index, 1);
-    },
+  initialState: {
+    items: [],
+    isLoading: false,
+    error: null,
   },
+  extraReducers: (builder) =>
+    builder
+      .addCase(fetchDevices.pending, (state) => {
+        // state.isLoading = true;
+      })
+      .addCase(fetchDevices.fulfilled, (state, action) => {
+        state.items = action.payload;
+      }),
 });
 
-export const { addDevice, deleteDevice } = allEquipmentSlice.actions;
+export const allEquipmentReducer = allEquipmentSlice.reducer;
 
-export const devicesReducer = allEquipmentSlice.reducer;
+// addDevice: {
+//   reducer(state, action) {
+//     state.push(action.payload);
+//   },
+//   prepare({ name, info, sn, type, location, status, employee }) {
+//     return {
+//       payload: {
+//         id: nanoid(),
+//         name,
+//         info,
+//         sn,
+//         type,
+//         status,
+//         location,
+//         employee,
+//       },
+//     };
+//   },
+// },
+// deleteDevice(state, action) {
+//   const index = state.findIndex((task) => task.id === action.payload);
+//   state.splice(index, 1);
+// },

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getUser, getUserDevices } from "../../redux/selectors";
+import { getUser } from "../../redux/selectors";
 import { logOut } from "../../redux/user/operation";
 
 import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
@@ -10,14 +10,14 @@ import { MdOutlineImportantDevices } from "react-icons/md";
 
 export const Sidebar = () => {
   const user = useSelector(getUser);
-  const devices = useSelector(getUserDevices);
+
   const dispatch = useDispatch();
 
   const handleLogOut = () => {
     dispatch(logOut());
   };
 
-  const type = devices.reduce((allType, device) => {
+  const type = user.equipment.reduce((allType, device) => {
     allType.push(device.type);
     return allType;
   }, []);
@@ -41,10 +41,10 @@ export const Sidebar = () => {
         <Text fontWeight="bold" fontSize="20px">
           {user.name ? user.name : "Username"}
         </Text>
-        {/* <Text fontWeight="bold" fontSize="20px">
-          Administrator
-        </Text> */}
       </Flex>
+      <Text fontWeight="bold" fontSize="20px" textAlign="center" color="second">
+        {user.position && user.position}
+      </Text>
       <Button
         onClick={handleLogOut}
         w="100%"
