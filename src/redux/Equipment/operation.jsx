@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useSelector } from "react-redux";
+import { getUser } from "../selectors";
 
 export const fetchDevices = createAsyncThunk(
   "devices/fetchAll",
@@ -16,6 +18,20 @@ export const fetchDevices = createAsyncThunk(
         });
         return resolve(devices);
       } catch (error) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    });
+  }
+);
+
+export const addDeviceForUser = createAsyncThunk(
+  "devices/add",
+  async (evt, thunkAPI) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        return resolve(evt);
+      } catch (error) {
+        console.log(error.message);
         return thunkAPI.rejectWithValue(error.message);
       }
     });

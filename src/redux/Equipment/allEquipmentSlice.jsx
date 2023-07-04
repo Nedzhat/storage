@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchDevices } from "./operation";
+import { addDeviceForUser, fetchDevices } from "./operation";
 
 const allEquipmentSlice = createSlice({
   name: "devices",
@@ -15,6 +15,10 @@ const allEquipmentSlice = createSlice({
       })
       .addCase(fetchDevices.fulfilled, (state, action) => {
         state.items = action.payload;
+      })
+      .addCase(addDeviceForUser.fulfilled, (state, action) => {
+        console.log(action.payload.device);
+        console.log(action.payload.user);
       }),
 });
 

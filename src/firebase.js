@@ -8,7 +8,6 @@ import {
   addDoc,
   doc,
   query,
-  getDocs,
 } from "firebase/firestore";
 
 const firebaseConfig = {

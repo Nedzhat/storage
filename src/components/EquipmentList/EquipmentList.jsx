@@ -7,27 +7,44 @@ import { MdOutlineImportantDevices } from "react-icons/md";
 
 import { ModalAddDevice } from "../ModalAddDevice/ModalAddDevice";
 import { statusFilters } from "../../redux/filterEquipment/constants";
-import { getDevices, getStatusFilter } from "../../redux/selectors";
+import {
+  getDevices,
+  getStatusFilter,
+  getTypeFilter,
+} from "../../redux/selectors";
 
-const getVisibleDevice = (devices, statusFilter) => {
+const getVisibleDevice = (devices, statusFilter, type) => {
+  let res = [];
+  let finallyRes = [];
+
   switch (statusFilter) {
     case statusFilters.use:
-      return devices.filter((device) => device.status === statusFilter);
+      res = devices.filter((device) => device.status === statusFilter);
+      if (type === "all") {
+        return res;
+      }
+      finallyRes = res.filter((device) => device.type === type);
+      return finallyRes;
+
     case statusFilters.stock:
-      return devices.filter((device) => device.status === statusFilter);
+      res = devices.filter((device) => device.status === statusFilter);
+      if (type === "all") {
+        return res;
+      }
+      finallyRes = res.filter((device) => device.type === type);
+      return finallyRes;
+
     default:
-      return devices;
+      if (type === "all") {
+        return devices;
+      }
+      finallyRes = devices.filter((device) => device.type === type);
+      return finallyRes;
   }
 };
 
-const getTypeDevices = (devices) => {
-  const arrType = [];
-  devices.map((device) => arrType.push(device.type));
-  return [...new Set(arrType)];
-};
-
 export const EquipmentList = () => {
-  const [idDevices, setIdDevices] = useState(null);
+  const [choiceDevice, setChoiceDevice] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
 
@@ -39,24 +56,26 @@ export const EquipmentList = () => {
     }
   }
 
-  const clickHandler = (id) => {
-    setIdDevices(id);
+  const clickHandler = (device) => {
+    setChoiceDevice(device);
     onOpen();
   };
 
   const devices = useSelector(getDevices);
   const statusFilters = useSelector(getStatusFilter);
-  const visibleDevice = getVisibleDevice(devices, statusFilters);
-  const typeOfDevices = getTypeDevices(devices);
+  const typeOfDevices = useSelector(getTypeFilter);
+  const visibleDevice = getVisibleDevice(devices, statusFilters, typeOfDevices);
 
   return (
     <Box>
       <Flex flexWrap="wrap" px={8} gap="14px">
-        {visibleDevice.map(
-          ({ id, name, info, sn, type, location, employee, status }) => {
+        {visibleDevice.length > 0 ? (
+          visibleDevice.map((device) => {
+            const { id, name, info, sn, type, location, employee, status } =
+              device;
             return (
               <Flex
-                key={name}
+                key={id}
                 flexDirection="column"
                 justifyContent="space-around"
                 w="32%"
@@ -72,7 +91,7 @@ export const EquipmentList = () => {
                   {status === "stock" ? (
                     <Button
                       onClick={() => {
-                        clickHandler(id);
+                        clickHandler(device);
                       }}
                       variant="outline"
                       _hover={{ bg: "main", color: "white" }}
@@ -98,10 +117,18 @@ export const EquipmentList = () => {
                 <Text color="second">S/N: {sn}</Text>
               </Flex>
             );
-          }
+          })
+        ) : (
+          <Text fontWeight="bold" color="second" fontSize="3xl">
+            No matching result
+          </Text>
         )}
       </Flex>
-      <ModalAddDevice idDevices={idDevices} isOpen={isOpen} onClose={onClose} />
+      <ModalAddDevice
+        choiceDevice={choiceDevice}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </Box>
   );
 };

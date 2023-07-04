@@ -3,6 +3,7 @@ import { statusFilters } from "./constants";
 
 const filtersInitialState = {
   status: statusFilters.all,
+  type: statusFilters.all,
 };
 
 const filterDeviceSlice = createSlice({
@@ -12,8 +13,11 @@ const filterDeviceSlice = createSlice({
     setStatusFilter(state, action) {
       state.status = action.payload;
     },
+    setTypeFilter(state, action) {
+      state.type = action.payload;
+    },
   },
 });
 
-export const { setStatusFilter } = filterDeviceSlice.actions;
+export const { setStatusFilter, setTypeFilter } = filterDeviceSlice.actions;
 export const filterReducer = filterDeviceSlice.reducer;
