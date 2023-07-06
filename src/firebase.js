@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import {
   getFirestore,
   collection,
-  getDoc,
   setDoc,
   addDoc,
   doc,
   query,
+  getDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {

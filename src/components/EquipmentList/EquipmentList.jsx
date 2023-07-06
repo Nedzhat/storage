@@ -6,45 +6,16 @@ import { AddIcon } from "@chakra-ui/icons";
 import { MdOutlineImportantDevices } from "react-icons/md";
 
 import { ModalAddDevice } from "../ModalAddDevice/ModalAddDevice";
-import { statusFilters } from "../../redux/filterEquipment/constants";
+
 import {
   getDevices,
   getStatusFilter,
   getTypeFilter,
+  getVisibleDevice,
 } from "../../redux/selectors";
 
-const getVisibleDevice = (devices, statusFilter, type) => {
-  let res = [];
-  let finallyRes = [];
-
-  switch (statusFilter) {
-    case statusFilters.use:
-      res = devices.filter((device) => device.status === statusFilter);
-      if (type === "all") {
-        return res;
-      }
-      finallyRes = res.filter((device) => device.type === type);
-      return finallyRes;
-
-    case statusFilters.stock:
-      res = devices.filter((device) => device.status === statusFilter);
-      if (type === "all") {
-        return res;
-      }
-      finallyRes = res.filter((device) => device.type === type);
-      return finallyRes;
-
-    default:
-      if (type === "all") {
-        return devices;
-      }
-      finallyRes = devices.filter((device) => device.type === type);
-      return finallyRes;
-  }
-};
-
 export const EquipmentList = () => {
-  const [choiceDevice, setChoiceDevice] = useState(null);
+  const [selectedDevice, setSelectedDevice] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
 
@@ -57,7 +28,7 @@ export const EquipmentList = () => {
   }
 
   const clickHandler = (device) => {
-    setChoiceDevice(device);
+    setSelectedDevice(device);
     onOpen();
   };
 
@@ -71,8 +42,17 @@ export const EquipmentList = () => {
       <Flex flexWrap="wrap" px={8} gap="14px">
         {visibleDevice.length > 0 ? (
           visibleDevice.map((device) => {
-            const { id, name, info, sn, type, location, employee, status } =
-              device;
+            const {
+              id,
+              name,
+              info,
+              sn,
+              type,
+              location,
+              employee,
+              status,
+              project,
+            } = device;
             return (
               <Flex
                 key={id}
@@ -110,10 +90,14 @@ export const EquipmentList = () => {
                 </Flex>
                 <Text fontSize="sm">{info}</Text>
                 {status === "use" ? (
-                  <Text>Employee: {employee}</Text>
+                  <Box>
+                    <Text>Employee: {employee}</Text>
+                    <Text>Project: {project}</Text>
+                  </Box>
                 ) : (
                   <Text>Location: {location}</Text>
                 )}
+
                 <Text color="second">S/N: {sn}</Text>
               </Flex>
             );
@@ -125,7 +109,7 @@ export const EquipmentList = () => {
         )}
       </Flex>
       <ModalAddDevice
-        choiceDevice={choiceDevice}
+        selectedDevice={selectedDevice}
         isOpen={isOpen}
         onClose={onClose}
       />

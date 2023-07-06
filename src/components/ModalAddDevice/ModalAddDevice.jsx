@@ -19,9 +19,10 @@ import { SiAirtable } from "react-icons/si";
 import { addDeviceForUser } from "../../redux/Equipment/operation";
 import { getUser } from "../../redux/selectors";
 
-export const ModalAddDevice = ({ choiceDevice, isOpen, onClose }) => {
+export const ModalAddDevice = ({ selectedDevice, isOpen, onClose }) => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
+
   const submitDeviceForUser = (device) => {
     dispatch(addDeviceForUser({ device, user }));
     onClose();
@@ -35,19 +36,19 @@ export const ModalAddDevice = ({ choiceDevice, isOpen, onClose }) => {
           <ModalHeader>Take device</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {choiceDevice && (
+            {selectedDevice && (
               <Box>
                 <Center gap="30px" py={3}>
                   <SiAirtable size="35px" />
                   <BsArrowRight size="35px" />
                   <AiOutlineUser size="35px" />
                 </Center>
-                <Text fontWeight="bold">{choiceDevice.name}</Text>
+                <Text fontWeight="bold">{selectedDevice.name}</Text>
                 <Text fontSize="sm" color="second">
-                  {choiceDevice.type}
+                  {selectedDevice.type}
                 </Text>
-                <Text fontSize="sm">{choiceDevice.info}</Text>
-                <Text color="second">S/N: {choiceDevice.sn}</Text>
+                <Text fontSize="sm">{selectedDevice.info}</Text>
+                <Text color="second">S/N: {selectedDevice.sn}</Text>
               </Box>
             )}
           </ModalBody>
@@ -58,7 +59,7 @@ export const ModalAddDevice = ({ choiceDevice, isOpen, onClose }) => {
             </Button>
             <Button
               onClick={() => {
-                submitDeviceForUser(choiceDevice);
+                submitDeviceForUser(selectedDevice);
               }}
               variant="ghost"
             >

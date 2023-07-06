@@ -18,20 +18,14 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsArrowRight } from "react-icons/bs";
 import { SiAirtable } from "react-icons/si";
 import { getUser } from "../../redux/selectors";
+import { returnDevice } from "../../redux/Equipment/operation";
 
-export const ModalReturnDevice = ({ idDevices, isOpen, onClose }) => {
-  // const dispatch = useDispatch();
+export const ModalReturnDevice = ({ selectedDevice, isOpen, onClose }) => {
+  const dispatch = useDispatch();
   const { equipment } = useSelector(getUser);
 
-  let selectDevice;
-  for (const device of equipment) {
-    if (device.id === idDevices) {
-      selectDevice = device;
-    }
-  }
-
   const takeIdDevice = (id) => {
-    console.log(id);
+    dispatch(returnDevice(id));
     onClose();
   };
 
@@ -43,19 +37,19 @@ export const ModalReturnDevice = ({ idDevices, isOpen, onClose }) => {
           <ModalHeader>Return device for sorting table</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {selectDevice && (
+            {selectedDevice && (
               <Box>
                 <Center gap="30px" py={3}>
                   <AiOutlineUser size="35px" />
                   <BsArrowRight size="35px" />
                   <SiAirtable size="35px" />
                 </Center>
-                <Text fontWeight="bold">{selectDevice.name}</Text>
+                <Text fontWeight="bold">{selectedDevice.name}</Text>
                 <Text fontSize="sm" color="second">
-                  {selectDevice.type}
+                  {selectedDevice.type}
                 </Text>
-                <Text fontSize="sm">{selectDevice.info}</Text>
-                <Text color="second">S/N: {selectDevice.sn}</Text>
+                <Text fontSize="sm">{selectedDevice.info}</Text>
+                <Text color="second">S/N: {selectedDevice.sn}</Text>
               </Box>
             )}
           </ModalBody>
@@ -66,7 +60,7 @@ export const ModalReturnDevice = ({ idDevices, isOpen, onClose }) => {
             </Button>
             <Button
               onClick={() => {
-                takeIdDevice(selectDevice.id);
+                takeIdDevice(selectedDevice.id);
               }}
               variant="ghost"
             >

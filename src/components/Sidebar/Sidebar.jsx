@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getUser } from "../../redux/selectors";
+import { getDevices, getUser, getUserDevices } from "../../redux/selectors";
 import { logOut } from "../../redux/user/operation";
 
 import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
@@ -10,6 +10,8 @@ import { MdOutlineImportantDevices } from "react-icons/md";
 
 export const Sidebar = () => {
   const user = useSelector(getUser);
+  const devices = useSelector(getDevices);
+  const equipment = getUserDevices(devices, user.email);
 
   const dispatch = useDispatch();
 
@@ -17,7 +19,7 @@ export const Sidebar = () => {
     dispatch(logOut());
   };
 
-  const type = user.equipment.reduce((allType, device) => {
+  const type = equipment.reduce((allType, device) => {
     allType.push(device.type);
     return allType;
   }, []);

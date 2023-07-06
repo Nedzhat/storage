@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useAuth } from "../hooks/useAuth";
 
 import { refreshUser } from "../redux/user/operation";
+import { fetchDevices } from "../redux/Equipment/operation";
 
 const MyDevices = lazy(() => import("../pages/MyDevices/MyDevices"));
 const People = lazy(() => import("../pages/People/People"));
@@ -21,6 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(fetchDevices());
   }, [dispatch]);
 
   return isRefreshing ? (

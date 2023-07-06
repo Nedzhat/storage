@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { getUser } from "../../redux/selectors";
+import { getDevices, getUser, getUserDevices } from "../../redux/selectors";
 
 import {
   Box,
@@ -20,20 +20,23 @@ import {
 import { ModalReturnDevice } from "../ModalReturnDevice/ModalReturnDevice";
 
 export const ActiveDevices = () => {
-  const [idDevices, setIdDevices] = useState(null);
+  const [selectedDevice, setSelectedDevice] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { equipment } = useSelector(getUser);
+  const user = useSelector(getUser);
+  const devices = useSelector(getDevices);
 
-  const clickHandler = (id) => {
-    setIdDevices(id);
+  const equipment = getUserDevices(devices, user.email);
+
+  const clickHandler = (device) => {
+    setSelectedDevice(device);
     onOpen();
   };
 
   return (
     <Box>
       <ModalReturnDevice
-        idDevices={idDevices}
+        selectedDevice={selectedDevice}
         isOpen={isOpen}
         onClose={onClose}
       />
@@ -42,7 +45,8 @@ export const ActiveDevices = () => {
       </Flex>
       <Flex flexWrap="wrap" px={8} gap="15px">
         {equipment.length > 0 ? (
-          equipment.map(({ id, name, info, sn, type }) => {
+          equipment.map((device) => {
+            const { id, name, info, sn, type, project } = device;
             return (
               <Flex
                 key={id}
@@ -58,7 +62,7 @@ export const ActiveDevices = () => {
                   <MdOutlineImportantDevices size={30} color="main" />
                   <IconButton
                     onClick={() => {
-                      clickHandler(id);
+                      clickHandler(device);
                     }}
                     variant="outline"
                     colorScheme="#323b4b"
@@ -75,6 +79,7 @@ export const ActiveDevices = () => {
                   </Text>
                 </Flex>
                 <Text fontSize="sm">{info}</Text>
+                <Text fontSize="sm">Project: {project}</Text>
                 <Text color="second">S/N: {sn}</Text>
               </Flex>
             );
