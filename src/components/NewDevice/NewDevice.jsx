@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { AddIcon } from "@chakra-ui/icons";
 import {
@@ -21,15 +21,22 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { arrayOfType } from "../../redux/Equipment/constants";
-import employees from "../../../employees.json";
+import { getEmployees } from "../../redux/selectors";
 import { createDevice } from "../../redux/Equipment/operation";
+
+const findEmployeeEmail = (employees, name) => {
+  const result = employees.find((emp) => emp.name === name);
+  return result.email;
+};
 
 export const NewDevice = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [status, setStatus] = useState("use");
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
   const firstField = useRef();
+
+  const employees = useSelector(getEmployees);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -45,7 +52,9 @@ export const NewDevice = () => {
         status,
         location: location.value ? location.value : null,
         employee: employee.value ? employee.value : null,
-        employee_email: null,
+        employee_email: employee.value
+          ? findEmployeeEmail(employees, employee.value)
+          : null,
         project: null,
       })
     );
@@ -141,7 +150,7 @@ export const NewDevice = () => {
                   placeholder="Select employee"
                   isRequired
                 >
-                  {employees.map(({ id, name }, idx) => {
+                  {employees.map(({ name }, idx) => {
                     return (
                       <option key={idx} value={name}>
                         {name}

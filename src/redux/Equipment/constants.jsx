@@ -2,7 +2,7 @@ export const arrayOfType = [
   "Laptop",
   "DevKit",
   "Monitor",
-  "Ram",
+  "RAM",
   "Phone",
   "Power station",
   "DevBoard",
