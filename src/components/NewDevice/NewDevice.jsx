@@ -20,9 +20,9 @@ import {
   Stack,
   useDisclosure,
 } from "@chakra-ui/react";
-
+import { arrayOfType } from "../../redux/Equipment/constants";
 import employees from "../../../employees.json";
-// import { addDevice } from "../../redux/Equipment/allEquipmentSlice";
+import { createDevice } from "../../redux/Equipment/operation";
 
 export const NewDevice = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,17 +36,20 @@ export const NewDevice = () => {
 
     const { name, info, sn, type, location, employee } = e.target;
 
-    // dispatch(
-    //   addDevice({
-    //     name: name.value,
-    //     info: info.value,
-    //     sn: sn.value,
-    //     type: type.value,
-    //     status,
-    //     location: location.value ? location.value : "none",
-    //     employee: employee.value ? employee.value : "none",
-    //   })
-    // );
+    dispatch(
+      createDevice({
+        name: name.value,
+        info: info.value,
+        sn: sn.value,
+        type: type.value,
+        status,
+        location: location.value ? location.value : null,
+        employee: employee.value ? employee.value : null,
+        employee_email: null,
+        project: null,
+      })
+    );
+
     onClose();
   };
 
@@ -99,17 +102,14 @@ export const NewDevice = () => {
                 </Box>
                 <Box>
                   <FormLabel htmlFor="type">Select type</FormLabel>
-                  <Select id="type" defaultValue="Laptop" isRequired>
-                    <option value="Laptop">Laptop</option>
-                    <option value="DevKit">DevKit</option>
-                    <option value="Monitor">Monitor</option>
-                    <option value="Ram">Ram</option>
-                    <option value="Phone">Phone</option>
-                    <option value="Power station">Power station</option>
-                    <option value="Dev board">Dev board</option>
-                    <option value="Power bank">Power bank</option>
-                    <option value="Mouse">Mouse</option>
-                    <option value="Keyboard">Keyboard</option>
+                  <Select id="type" isRequired>
+                    {arrayOfType.map((type, idx) => {
+                      return (
+                        <option key={idx} value={type}>
+                          {type}
+                        </option>
+                      );
+                    })}
                   </Select>
                 </Box>
                 <RadioGroup onChange={setStatus} value={status}>

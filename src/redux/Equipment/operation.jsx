@@ -5,6 +5,7 @@ import {
   doc,
   updateDoc,
   getDoc,
+  addDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -86,6 +87,36 @@ export const returnDevice = createAsyncThunk(
             });
         })
         .catch((error) => {
+          thunkAPI.rejectWithValue(error.message);
+        });
+    });
+  }
+);
+
+export const createDevice = createAsyncThunk(
+  "devices/create",
+  async (device, thunkAPI) => {
+    return new Promise(async (resolve, reject) => {
+      const deviceRef = addDoc(collection(db, "devices"), device)
+        .then((ref) => {
+          const deviceRefId = ref.id;
+          getDoc(doc(db, "devices", deviceRefId))
+            .then((device) => {
+              if (device.exists()) {
+                const createdDevice = device.data();
+                createdDevice.id = device.id;
+                resolve(createdDevice);
+              } else {
+                reject();
+              }
+            })
+            .catch((error) => {
+              console.log(error.message);
+              thunkAPI.rejectWithValue(error.message);
+            });
+        })
+        .catch((error) => {
+          console.log(error.message);
           thunkAPI.rejectWithValue(error.message);
         });
     });

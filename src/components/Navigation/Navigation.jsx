@@ -25,7 +25,7 @@ export const Navigation = () => {
       <Box
         as={NavLink}
         sx={linkStyles}
-        to={"/people"}
+        to={"/employees"}
         _activeLink={{ color: "white", bg: "main" }}
       >
         <AiOutlineTeam style={svgStyle} />

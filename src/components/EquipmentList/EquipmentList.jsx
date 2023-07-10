@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Box, Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
@@ -17,7 +17,6 @@ import {
 export const EquipmentList = () => {
   const [selectedDevice, setSelectedDevice] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const dispatch = useDispatch();
 
   function colorPick(status) {
     if (status === "use") {

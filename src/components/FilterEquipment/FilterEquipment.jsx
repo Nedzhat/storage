@@ -14,12 +14,7 @@ import {
   setStatusFilter,
   setTypeFilter,
 } from "../../redux/filterEquipment/filterDeviceSlice";
-
-const getTypeDevices = (devices) => {
-  const arrType = [];
-  devices.map((device) => arrType.push(device.type));
-  return [...new Set(arrType)];
-};
+import { arrayOfType } from "../../redux/Equipment/constants";
 
 export const FilterEquipment = () => {
   const devices = useSelector(getDevices);
@@ -31,8 +26,6 @@ export const FilterEquipment = () => {
 
   const handleFilterTypeChange = (filter) => dispatch(setTypeFilter(filter));
   const handleFilterChange = (filter) => dispatch(setStatusFilter(filter));
-
-  const typeOfDevices = getTypeDevices(devices);
 
   return (
     <Box>
@@ -82,7 +75,7 @@ export const FilterEquipment = () => {
         >
           ALL
         </Button>
-        {typeOfDevices.map((type, idx) => {
+        {arrayOfType.map((type, idx) => {
           return (
             <Button
               key={idx}

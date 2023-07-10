@@ -7,9 +7,10 @@ import { useAuth } from "../hooks/useAuth";
 
 import { refreshUser } from "../redux/user/operation";
 import { fetchDevices } from "../redux/Equipment/operation";
+import { fetchEmployees } from "../redux/Employees/operation";
 
 const MyDevices = lazy(() => import("../pages/MyDevices/MyDevices"));
-const People = lazy(() => import("../pages/People/People"));
+const Employees = lazy(() => import("../pages/Employees/Employees"));
 const Equipment = lazy(() => import("../pages/Equipment/Equipment"));
 const Projects = lazy(() => import("../pages/Projects/Projects"));
 const Workplace = lazy(() => import("../pages/Workplace/Workplace"));
@@ -23,6 +24,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
     dispatch(fetchDevices());
+    dispatch(fetchEmployees());
   }, [dispatch]);
 
   return isRefreshing ? (
@@ -31,7 +33,7 @@ function App() {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<MyDevices />} />
-        <Route path="/people" element={<People />} />
+        <Route path="/employees" element={<Employees />} />
         <Route path="/equipment" element={<Equipment />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/workplace" element={<Workplace />} />

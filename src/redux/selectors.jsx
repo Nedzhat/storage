@@ -2,6 +2,8 @@ import { statusFilters } from "./filterEquipment/constants";
 
 export const getDevices = (state) => state.devices.items;
 
+export const getEmployees = (state) => state.employees.items;
+
 export const getStatusFilter = (state) => state.filter.status;
 
 export const getTypeFilter = (state) => state.filter.type;

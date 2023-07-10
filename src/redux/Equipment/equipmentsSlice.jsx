@@ -1,9 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addDeviceForUser, fetchDevices, returnDevice } from "./operation";
+import {
+  addDeviceForUser,
+  createDevice,
+  fetchDevices,
+  returnDevice,
+} from "./operation";
 import { Notify } from "notiflix";
 import { Report } from "notiflix/build/notiflix-report-aio";
 
-const allEquipmentSlice = createSlice({
+const equipmentsSlice = createSlice({
   name: "devices",
   initialState: {
     items: [],
@@ -35,11 +40,15 @@ const allEquipmentSlice = createSlice({
           state.items.splice(idx, 1, action.payload);
         }
         Report.success(
-          `${action.payload.name} returned to the sorting table`,
+          `${action.payload.name} returned`,
           "Please inform the administrator Nedzhat of the office about the return of the device.",
           "Okay"
         );
+      })
+      .addCase(createDevice.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+        Notify.success(`${action.payload.name} created in our equipment`);
       }),
 });
 
-export const allEquipmentReducer = allEquipmentSlice.reducer;
+export const equipmentsReducer = equipmentsSlice.reducer;
