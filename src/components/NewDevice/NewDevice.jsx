@@ -24,7 +24,7 @@ import { arrayOfType } from "../../redux/Equipment/constants";
 import { getEmployees } from "../../redux/selectors";
 import { createDevice } from "../../redux/Equipment/operation";
 
-const findEmployeeEmail = (employees, name) => {
+const getEmployeeEmail = (employees, name) => {
   const result = employees.find((emp) => emp.name === name);
   return result.email;
 };
@@ -53,7 +53,7 @@ export const NewDevice = () => {
         location: location.value ? location.value : null,
         employee: employee.value ? employee.value : null,
         employee_email: employee.value
-          ? findEmployeeEmail(employees, employee.value)
+          ? getEmployeeEmail(employees, employee.value)
           : null,
         project: null,
       })

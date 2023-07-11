@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider, db } from "../../firebase";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 export const checkUserInDB = async (email) => {
   const docRef = doc(db, "employees", email);
@@ -12,21 +12,6 @@ export const checkUserInDB = async (email) => {
   } else {
     console.log("No such document!");
   }
-};
-
-export const checkUserEquipment = async (email) => {
-  let userEquipment = [];
-
-  const docSnap = await getDocs(
-    collection(db, "employees", email, "equipment")
-  );
-
-  docSnap.forEach((doc) => {
-    const res = doc.data();
-    res.id = doc.id;
-    userEquipment.push(res);
-  });
-  return userEquipment;
 };
 
 export const logIn = createAsyncThunk("user/login", async () => {
@@ -42,16 +27,13 @@ export const logIn = createAsyncThunk("user/login", async () => {
 
     if (status) {
       const employee = await checkUserInDB(user.email);
-      const userEquipment = await checkUserEquipment(user.email);
-
       const formatingUser = {
         name: user.displayName,
         email: user.email,
         token: user.accessToken,
         id: user.uid,
-        position: employee.position ? employee.position : "",
-        projects: employee.projects ? employee.projects : "",
-        equipment: userEquipment ? userEquipment : [],
+        position: employee ? employee.position : "",
+        projects: employee ? employee.projects : "",
       };
 
       resolve(formatingUser);
@@ -89,13 +71,13 @@ export const refreshUser = createAsyncThunk(
           },
           (error) => {
             unsubscribe();
+            console.log(error.message);
             reject(error);
           }
         );
       });
 
       const employee = await checkUserInDB(user.email);
-      const userEquipment = await checkUserEquipment(user.email);
 
       const formatingUser = {
         name: user.displayName,
@@ -104,11 +86,11 @@ export const refreshUser = createAsyncThunk(
         id: user.uid,
         position: employee.position ? employee.position : "",
         projects: employee.projects ? employee.projects : "",
-        equipment: userEquipment ? userEquipment : [],
       };
 
       return formatingUser;
     } catch (error) {
+      console.log(error.message);
       return rejectWithValue(error);
     }
   }

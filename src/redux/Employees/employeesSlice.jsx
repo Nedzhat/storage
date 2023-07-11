@@ -12,4 +12,6 @@ const employeesSlice = createSlice({
     }),
 });
 
+export const { addUser } = employeesSlice.actions;
+
 export const employeesReducer = employeesSlice.reducer;

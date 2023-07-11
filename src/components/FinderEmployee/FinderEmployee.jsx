@@ -1,6 +1,6 @@
 import { Flex, Heading, Input } from "@chakra-ui/react";
 
-export const FinderPeople = () => {
+export const FinderEmployee = () => {
   return (
     <Flex justifyContent="space-between">
       <Heading size="lg">Employees</Heading>
@@ -9,6 +9,7 @@ export const FinderPeople = () => {
         placeholder="Find by name ..."
         w="40%"
         bgColor="white"
+        // onChange={handleChange}
       />
     </Flex>
   );

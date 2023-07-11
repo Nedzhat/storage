@@ -23,6 +23,7 @@ export const fetchDevices = createAsyncThunk(
         });
         return resolve(devices);
       } catch (error) {
+        console.log(error.message);
         return thunkAPI.rejectWithValue(error.message);
       }
     });
@@ -51,10 +52,12 @@ export const addDeviceForUser = createAsyncThunk(
               }
             })
             .catch((error) => {
+              console.log(error.message);
               thunkAPI.rejectWithValue(error.message);
             });
         })
         .catch((error) => {
+          console.log(error.message);
           thunkAPI.rejectWithValue(error.message);
         });
     });
@@ -83,10 +86,12 @@ export const returnDevice = createAsyncThunk(
               }
             })
             .catch((error) => {
+              console.log(error.message);
               thunkAPI.rejectWithValue(error.message);
             });
         })
         .catch((error) => {
+          console.log(error.message);
           thunkAPI.rejectWithValue(error.message);
         });
     });

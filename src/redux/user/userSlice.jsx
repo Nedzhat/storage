@@ -6,7 +6,6 @@ const initialState = {
   employee: {
     name: null,
     email: null,
-    equipment: [],
     position: null,
     projects: null,
   },
@@ -28,7 +27,6 @@ const userSlice = createSlice({
       .addCase(logIn.fulfilled, (state, action) => {
         state.employee.name = action.payload.name;
         state.employee.email = action.payload.email;
-        state.employee.equipment = action.payload.equipment;
         state.employee.position = action.payload.position;
         state.employee.projects = action.payload.projects;
         state.id = action.payload.id;
@@ -43,7 +41,6 @@ const userSlice = createSlice({
       .addCase(logOut.fulfilled, (state) => {
         state.employee.name = null;
         state.employee.email = null;
-        state.employee.equipment = [];
         state.employee.position = null;
         state.employee.projects = null;
         state.token = null;
@@ -57,7 +54,6 @@ const userSlice = createSlice({
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.employee.name = action.payload.name;
         state.employee.email = action.payload.email;
-        state.employee.equipment = action.payload.equipment;
         state.employee.position = action.payload.position;
         state.employee.projects = action.payload.projects;
         state.id = action.payload.id;
