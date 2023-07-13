@@ -4,7 +4,7 @@ import { logOut } from "../../redux/user/operation";
 
 import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
 
-import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineFundProjectionScreen, AiOutlineUser } from "react-icons/ai";
 import { HiOutlineLogout } from "react-icons/hi";
 import { MdOutlineImportantDevices } from "react-icons/md";
 
@@ -57,35 +57,63 @@ export const Sidebar = () => {
         Log Out
       </Button>
       <Box mt={8}>
-        {resTypesDevices.length > 0 ? (
-          <Heading fontSize="md">Your Devices</Heading>
+        {user.projects ? (
+          <Heading fontSize="md">Your Projects</Heading>
         ) : (
           <Heading fontSize="md" color="second">
-            You haven't any device!
+            You haven't any project!
           </Heading>
         )}
         <Divider mt={5} mb={2} borderColor="main" borderBottomWidth="2px" />
         <Flex gap="10px" flexDirection="column">
-          {resTypesDevices.length > 0 &&
-            resTypesDevices.map((device, idx) => {
-              return (
-                <Flex
-                  key={idx}
-                  p={4}
-                  gap="10px"
-                  alignItems="center"
-                  border="1px solid #989ca4"
-                  borderRadius="8px"
-                >
-                  <MdOutlineImportantDevices size="25px" />
-                  <Box>
-                    <Text>{device[0]}</Text>
-                    <Text color="second">{device[1]}</Text>
-                  </Box>
-                </Flex>
-              );
-            })}
+          {user.projects && (
+            <Flex
+              p={4}
+              gap="10px"
+              alignItems="center"
+              border="1px solid #989ca4"
+              borderRadius="8px"
+            >
+              <AiOutlineFundProjectionScreen size="30px" />
+              <Box>
+                <Text fontWeight="bold" fontSize="xl">
+                  {user.projects}
+                </Text>
+              </Box>
+            </Flex>
+          )}
         </Flex>
+        <Box mt={8}>
+          {resTypesDevices.length > 0 ? (
+            <Heading fontSize="md">Your Devices</Heading>
+          ) : (
+            <Heading fontSize="md" color="second">
+              You haven't any device!
+            </Heading>
+          )}
+          <Divider mt={5} mb={2} borderColor="main" borderBottomWidth="2px" />
+          <Flex gap="10px" flexDirection="column">
+            {resTypesDevices.length > 0 &&
+              resTypesDevices.map((device, idx) => {
+                return (
+                  <Flex
+                    key={idx}
+                    p={4}
+                    gap="10px"
+                    alignItems="center"
+                    border="1px solid #989ca4"
+                    borderRadius="8px"
+                  >
+                    <MdOutlineImportantDevices size="25px" />
+                    <Box>
+                      <Text>{device[0]}</Text>
+                      <Text color="second">{device[1]}</Text>
+                    </Box>
+                  </Flex>
+                );
+              })}
+          </Flex>
+        </Box>
       </Box>
     </Box>
   );

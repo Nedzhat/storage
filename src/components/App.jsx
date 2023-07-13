@@ -18,14 +18,16 @@ const Admin = lazy(() => import("../pages/Admin/Admin"));
 const NotFound = lazy(() => import("../pages/NotFound/NotFound"));
 
 function App() {
-  const { isRefreshing } = useAuth();
+  const { isRefreshing, isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refreshUser());
-    dispatch(fetchDevices());
-    dispatch(fetchEmployees());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(fetchDevices());
+      dispatch(fetchEmployees());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return isRefreshing ? (
     <div>Loading...</div>
