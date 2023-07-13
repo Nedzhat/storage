@@ -6,7 +6,7 @@ import { FilterEquipment } from "../../components/FilterEquipment/FilterEquipmen
 
 const Equipment = () => {
   return (
-    <Box as="section" w="60%" bg="bgColor" p={8} h="100%">
+    <Box as="section" w="60%" bg="bgColor" p={8} minH="100vh" h="auto">
       <FinderEquipment />
       <FilterEquipment />
       <EquipmentList />

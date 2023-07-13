@@ -31,10 +31,7 @@ export const EquipmentList = () => {
     onOpen();
   };
 
-  const devices = useSelector(getDevices);
-  const statusFilters = useSelector(getStatusFilter);
-  const typeOfDevices = useSelector(getTypeFilter);
-  const visibleDevice = getVisibleDevice(devices, statusFilters, typeOfDevices);
+  const visibleDevice = useSelector(getVisibleDevice);
 
   return (
     <Box>

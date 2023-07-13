@@ -7,7 +7,7 @@ const filtersInitialState = {
 };
 
 const filterDeviceSlice = createSlice({
-  name: "filter",
+  name: "filterDevices",
   initialState: filtersInitialState,
   reducers: {
     setStatusFilter(state, action) {
@@ -20,4 +20,4 @@ const filterDeviceSlice = createSlice({
 });
 
 export const { setStatusFilter, setTypeFilter } = filterDeviceSlice.actions;
-export const filterReducer = filterDeviceSlice.reducer;
+export const filterDevicesReducer = filterDeviceSlice.reducer;

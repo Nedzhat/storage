@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getDevices, getEmployees } from "../../redux/selectors";
+import { getDevices, getVisibleEmployees } from "../../redux/selectors";
 
 import {
   Button,
@@ -20,12 +20,12 @@ import {
 } from "@chakra-ui/react";
 
 export const EmployeesList = () => {
-  const employees = useSelector(getEmployees);
+  const employees = useSelector(getVisibleEmployees);
   const devices = useSelector(getDevices);
 
   return (
     <Flex flexWrap="wrap" mt={8} justifyContent="space-between" gap="20px 0">
-      {employees &&
+      {employees.length > 0 ? (
         employees.map(({ name, email, position, projects }, idx) => {
           const equipment = [];
           devices.find((device) => {
@@ -107,7 +107,12 @@ export const EmployeesList = () => {
               )}
             </Flex>
           );
-        })}
+        })
+      ) : (
+        <Text fontWeight="bold" color="second" fontSize="3xl">
+          No matching result
+        </Text>
+      )}
     </Flex>
   );
 };
