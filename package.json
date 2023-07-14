@@ -1,6 +1,7 @@
 {
   "name": "storage",
   "private": true,
+  "homepage": "https://Nedzhat.github.io/storage/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
