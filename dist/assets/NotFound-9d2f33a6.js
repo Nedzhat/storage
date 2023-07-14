@@ -1,1 +1,0 @@
-import{j as o,C as t,T as r}from"./index-4887a6c3.js";const n=()=>o.jsx(t,{as:"section",bg:"bgColor",w:"60%",minH:"100vh",h:"auto",children:o.jsx(r,{fontWeight:"bold",children:"Sorry, but we can't found your page. Try again 😭"})});export{n as default};
