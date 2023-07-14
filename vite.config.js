@@ -5,7 +5,9 @@ export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   return defineConfig({
     plugins: [react()],
-    base: "https://nedzhat.github.io/storage/",
+    build: {
+      base: "https://nedzhat.github.io/storage/",
+    },
     define: {
       "process.env": process.env,
     },
