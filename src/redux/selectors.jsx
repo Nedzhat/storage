@@ -9,6 +9,8 @@ export const getStatusFilter = (state) => state.filterDevices.status;
 
 export const getTypeFilter = (state) => state.filterDevices.type;
 
+export const getQueryFilter = (state) => state.filterDevices.query;
+
 export const getEmployeesFilter = (state) => state.filterEmployees;
 
 export const getUser = (state) => state.user.employee;
@@ -18,35 +20,17 @@ export const getUserDevices = (devices, email) => {
 };
 
 export const getVisibleDevice = createSelector(
-  [getDevices, getStatusFilter, getTypeFilter],
-  (devices, statusFilter, type) => {
-    let res = [];
-    let finallyRes = [];
-
-    switch (statusFilter) {
-      case statusFilters.use:
-        res = devices.filter((device) => device.status === statusFilter);
-        if (type === "all") {
-          return res;
-        }
-        finallyRes = res.filter((device) => device.type === type);
-        return finallyRes;
-
-      case statusFilters.stock:
-        res = devices.filter((device) => device.status === statusFilter);
-        if (type === "all") {
-          return res;
-        }
-        finallyRes = res.filter((device) => device.type === type);
-        return finallyRes;
-
-      default:
-        if (type === "all") {
-          return devices;
-        }
-        finallyRes = devices.filter((device) => device.type === type);
-        return finallyRes;
-    }
+  [getDevices, getStatusFilter, getTypeFilter, getQueryFilter],
+  (devices, statusFilter, type, query) => {
+    return devices.filter((device) => {
+      console.log(device);
+      const statusMatch =
+        statusFilter === "all" || device.status === statusFilter;
+      const typeMatch = type === "all" || device.type === type;
+      const nameMatch =
+        query === "" || device.name.toLowerCase().includes(query.toLowerCase());
+      return statusMatch && typeMatch && nameMatch;
+    });
   }
 );
 
@@ -61,3 +45,40 @@ export const getVisibleEmployees = createSelector(
     return visibleContacts;
   }
 );
+
+// switch (statusFilter) {
+//   case statusFilters.use:
+//     res = devices.filter(
+//       (device) =>
+//         device.status === statusFilter && device.name.includes(query)
+//     );
+//     if (type === "all") {
+//       return res;
+//     }
+//     finallyRes = res.filter(
+//       (device) => device.type === type && device.name.includes(query)
+//     );
+//     return finallyRes;
+
+//   case statusFilters.stock:
+//     res = devices.filter(
+//       (device) =>
+//         device.status === statusFilter && device.name.includes(query)
+//     );
+//     if (type === "all") {
+//       return res;
+//     }
+//     finallyRes = res.filter(
+//       (device) => device.type === type && device.name.includes(query)
+//     );
+//     return finallyRes;
+
+//   default:
+//     if (type === "all") {
+//       return devices;
+//     }
+//     finallyRes = devices.filter(
+//       (device) => device.type === type && device.name.includes(query)
+//     );
+//     return finallyRes;
+// }

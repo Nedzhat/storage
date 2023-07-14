@@ -6,6 +6,7 @@ import { Sidebar } from "./Sidebar/Sidebar";
 import { Box } from "@chakra-ui/react";
 import { useAuth } from "../hooks/useAuth";
 import { Login } from "./Login/Login";
+import { Loader } from "./Loader/Loader";
 
 export const SharedLayout = () => {
   const { isLoggedIn } = useAuth();
@@ -18,7 +19,7 @@ export const SharedLayout = () => {
           <Suspense
             fallback={
               <Box w="60%" bg="bgColor">
-                Loading...
+                <Loader />
               </Box>
             }
           >

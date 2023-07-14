@@ -8,6 +8,7 @@ import { useAuth } from "../hooks/useAuth";
 import { refreshUser } from "../redux/user/operation";
 import { fetchDevices } from "../redux/Equipment/operation";
 import { fetchEmployees } from "../redux/Employees/operation";
+import { Loader } from "./Loader/Loader";
 
 const MyDevices = lazy(() => import("../pages/MyDevices/MyDevices"));
 const Employees = lazy(() => import("../pages/Employees/Employees"));
@@ -30,7 +31,7 @@ function App() {
   }, [dispatch, isLoggedIn]);
 
   return isRefreshing ? (
-    <div>Loading...</div>
+    <Loader />
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

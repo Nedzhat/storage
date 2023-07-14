@@ -46,6 +46,14 @@ export const addDeviceForUser = createAsyncThunk(
               if (device.exists()) {
                 const updatedDevice = device.data();
                 updatedDevice.id = device.id;
+                console.log({
+                  email: evt.user.email,
+                  name: updatedDevice.name,
+                  action: "Get",
+                  date: Date.now(),
+                  location: evt.device.location,
+                  sn: updatedDevice.sn,
+                });
                 resolve(updatedDevice);
               } else {
                 reject();
@@ -80,6 +88,14 @@ export const returnDevice = createAsyncThunk(
               if (device.exists()) {
                 const updatedDevice = device.data();
                 updatedDevice.id = device.id;
+                // console.log({
+                //   email: evt.user.email,
+                //   name: updatedDevice.name,
+                //   action: "Return",
+                //   date: Date.now(),
+                //   location: "Sorting table",
+                //   sn: updatedDevice.sn,
+                // });
                 resolve(updatedDevice);
               } else {
                 reject();

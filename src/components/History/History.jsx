@@ -7,6 +7,7 @@ import {
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -35,19 +36,25 @@ export const History = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {history.map(({ name, action, date, location, sn }, idx) => {
-                return (
-                  <Tr key={idx}>
-                    <Td>{name}</Td>
-                    <Td>{action}</Td>
-                    <Td>{date}</Td>
-                    <Td>{location}</Td>
-                    <Td>{sn}</Td>
-                  </Tr>
-                );
-              })}
+              {history.length > 0 &&
+                history.map(({ name, action, date, location, sn }, idx) => {
+                  return (
+                    <Tr key={idx}>
+                      <Td>{name}</Td>
+                      <Td>{action}</Td>
+                      <Td>{date}</Td>
+                      <Td>{location}</Td>
+                      <Td>{sn}</Td>
+                    </Tr>
+                  );
+                })}
             </Tbody>
           </Table>
+          {history.length === 0 && (
+            <Text textAlign="center" color="second" fontSize="3xl" mt={4}>
+              Here will be history of your equipment
+            </Text>
+          )}
         </TableContainer>
       </Box>
     </Box>
