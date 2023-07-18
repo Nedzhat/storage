@@ -41,7 +41,7 @@ const equipmentsSlice = createSlice({
         }
         Report.success(
           `${action.payload.name} returned`,
-          "Please inform the administrator Nedzhat of the office about the return of the device.",
+          "Please inform the office administrator Nedzhat about the return of the device.",
           "Okay"
         );
       })
