@@ -39,6 +39,7 @@ export const addDeviceForUser = createAsyncThunk(
         employee_email: evt.user.email,
         location: null,
         status: "use",
+        project: evt.user.projects,
       })
         .then(() => {
           getDoc(doc(db, "devices", evt.device.id))
@@ -46,14 +47,15 @@ export const addDeviceForUser = createAsyncThunk(
               if (device.exists()) {
                 const updatedDevice = device.data();
                 updatedDevice.id = device.id;
-                console.log({
-                  email: evt.user.email,
-                  name: updatedDevice.name,
-                  action: "Get",
-                  date: Date.now(),
-                  location: evt.device.location,
-                  sn: updatedDevice.sn,
-                });
+
+                // console.log({
+                //   email: evt.user.email,
+                //   name: updatedDevice.name,
+                //   action: "Get",
+                //   date: Date.now(),
+                //   location: evt.device.location,
+                //   sn: updatedDevice.sn,
+                // });
                 resolve(updatedDevice);
               } else {
                 reject();

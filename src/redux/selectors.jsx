@@ -1,5 +1,4 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { statusFilters } from "./filterEquipment/constants";
 
 export const getDevices = (state) => state.devices.items;
 
@@ -22,14 +21,20 @@ export const getUserDevices = (devices, email) => {
 export const getVisibleDevice = createSelector(
   [getDevices, getStatusFilter, getTypeFilter, getQueryFilter],
   (devices, statusFilter, type, query) => {
+    const searchQuery = query.toLowerCase();
     return devices.filter((device) => {
-      console.log(device);
       const statusMatch =
         statusFilter === "all" || device.status === statusFilter;
       const typeMatch = type === "all" || device.type === type;
       const nameMatch =
-        query === "" || device.name.toLowerCase().includes(query.toLowerCase());
-      return statusMatch && typeMatch && nameMatch;
+        query === "" || device.name.toLowerCase().includes(searchQuery);
+      const snMatch =
+        query === "" || device.sn.toLowerCase().includes(searchQuery);
+      const typeMatchQuery =
+        query === "" || device.type.toLowerCase().includes(searchQuery);
+      return (
+        statusMatch && typeMatch && (nameMatch || snMatch || typeMatchQuery)
+      );
     });
   }
 );

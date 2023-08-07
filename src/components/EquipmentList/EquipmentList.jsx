@@ -7,12 +7,7 @@ import { MdOutlineImportantDevices } from "react-icons/md";
 
 import { ModalAddDevice } from "../ModalAddDevice/ModalAddDevice";
 
-import {
-  getDevices,
-  getStatusFilter,
-  getTypeFilter,
-  getVisibleDevice,
-} from "../../redux/selectors";
+import { getVisibleDevice } from "../../redux/selectors";
 
 export const EquipmentList = () => {
   const [selectedDevice, setSelectedDevice] = useState(null);
@@ -49,6 +44,7 @@ export const EquipmentList = () => {
               status,
               project,
             } = device;
+
             return (
               <Flex
                 key={id}
