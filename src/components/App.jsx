@@ -9,6 +9,11 @@ import { refreshUser } from "../redux/user/operation";
 import { fetchDevices } from "../redux/Equipment/operation";
 import { fetchEmployees } from "../redux/Employees/operation";
 import { Loader } from "./Loader/Loader";
+import {
+  fetchWorkplacesFive,
+  fetchWorkplacesRemote,
+  fetchWorkplacesSix,
+} from "../redux/Workplace/operation";
 
 const MyDevices = lazy(() => import("../pages/MyDevices/MyDevices"));
 const Employees = lazy(() => import("../pages/Employees/Employees"));
@@ -27,6 +32,9 @@ function App() {
     if (isLoggedIn) {
       dispatch(fetchDevices());
       dispatch(fetchEmployees());
+      dispatch(fetchWorkplacesSix());
+      dispatch(fetchWorkplacesFive());
+      dispatch(fetchWorkplacesRemote());
     }
   }, [dispatch, isLoggedIn]);
 

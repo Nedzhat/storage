@@ -1,10 +1,12 @@
 import { Flex, Heading, Input } from "@chakra-ui/react";
 import { NewDevice } from "../NewDevice/NewDevice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setQueryFilter } from "../../redux/filterEquipment/filterDeviceSlice";
+import { getQueryFilter } from "../../redux/selectors";
 
 export const FinderEquipment = () => {
   const dispatch = useDispatch();
+  const query = useSelector(getQueryFilter);
 
   const handleChange = (e) => {
     dispatch(setQueryFilter(e.currentTarget.value));
@@ -19,6 +21,7 @@ export const FinderEquipment = () => {
         w="40%"
         bgColor="white"
         onChange={handleChange}
+        value={query ? query : ""}
       />
       <NewDevice />
     </Flex>
