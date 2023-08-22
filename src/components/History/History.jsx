@@ -23,7 +23,7 @@ export const History = () => {
         p={8}
         boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
       >
-        <Heading size="lg">History</Heading>
+        <Heading size="lg">History (example, not working)</Heading>
         <TableContainer>
           <Table variant="striped" colorScheme="#323b4b">
             <Thead>

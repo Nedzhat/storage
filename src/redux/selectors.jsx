@@ -14,6 +14,12 @@ export const getEmployeesFilter = (state) => state.filterEmployees;
 
 export const getUser = (state) => state.user.employee;
 
+export const getWorkplacesSix = (state) => state.workplaces.sixFloor;
+
+export const getWorkplacesFive = (state) => state.workplaces.fiveFloor;
+
+export const getWorkplacesRemote = (state) => state.workplaces.remote;
+
 export const getUserDevices = (devices, email) => {
   return devices.filter((device) => device.employee_email === email);
 };

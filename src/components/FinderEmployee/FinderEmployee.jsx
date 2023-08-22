@@ -1,9 +1,11 @@
 import { Flex, Heading, Input } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setEmployeesFilter } from "../../redux/FilterEmployees/FilterEmployeesSlice";
+import { getEmployeesFilter } from "../../redux/selectors";
 
 export const FinderEmployee = () => {
   const dispatch = useDispatch();
+  const { query } = useSelector(getEmployeesFilter);
 
   const handleChange = (e) => {
     dispatch(setEmployeesFilter(e.currentTarget.value));
@@ -18,6 +20,7 @@ export const FinderEmployee = () => {
         w="40%"
         bgColor="white"
         onChange={handleChange}
+        value={query ? query : ""}
       />
     </Flex>
   );
