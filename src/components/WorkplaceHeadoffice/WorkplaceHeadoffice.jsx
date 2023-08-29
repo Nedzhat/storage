@@ -21,6 +21,8 @@ export const WorkplaceHeadoffice = () => {
         <Heading size="lg">Workplaces</Heading>
         <Flex gap="15px">
           <Button
+            as="a"
+            href="#sixFloor"
             variant="outline"
             gap="5px"
             _hover={{ bg: "main", color: "white" }}
@@ -29,6 +31,8 @@ export const WorkplaceHeadoffice = () => {
             6.3
           </Button>
           <Button
+            as="a"
+            href="#fiveFloor"
             variant="outline"
             gap="5px"
             _hover={{ bg: "main", color: "white" }}
@@ -37,6 +41,8 @@ export const WorkplaceHeadoffice = () => {
             5.2
           </Button>
           <Button
+            as="a"
+            href="#remote"
             variant="outline"
             gap="5px"
             _hover={{ bg: "main", color: "white" }}
@@ -45,6 +51,8 @@ export const WorkplaceHeadoffice = () => {
             REMOTE
           </Button>
           <Button
+            as="a"
+            href="#closets"
             variant="outline"
             gap="5px"
             _hover={{ bg: "main", color: "white" }}
@@ -64,7 +72,7 @@ export const WorkplaceHeadoffice = () => {
         boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
         flexDirection="column"
       >
-        <Box>
+        <Box id="sixFloor" p={3}>
           <Text textAlign="center" fontSize="xl" fontWeight="bold">
             6.3
           </Text>
@@ -79,7 +87,7 @@ export const WorkplaceHeadoffice = () => {
                 className={`place ${name}`}
                 flexDirection="column"
               >
-                <p>{name}</p>
+                <Text fontWeight="bold">{name}</Text>
                 {employee && <p>{employee}</p>}
               </Center>
             );
@@ -93,8 +101,13 @@ export const WorkplaceHeadoffice = () => {
         boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
         flexDirection="column"
       >
-        <Box>
-          <Text textAlign="center" fontSize="xl" fontWeight="bold">
+        <Box p={3}>
+          <Text
+            id="fiveFloor"
+            textAlign="center"
+            fontSize="xl"
+            fontWeight="bold"
+          >
             5.2
           </Text>
         </Box>
@@ -122,30 +135,38 @@ export const WorkplaceHeadoffice = () => {
         boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
         flexDirection="column"
       >
-        <Box>
+        <Box id="remote" p={3}>
           <Text textAlign="center" fontSize="xl" fontWeight="bold">
             REMOTE
           </Text>
         </Box>
 
-        <div>
+        <Flex gap="20px" flexWrap="wrap" justifyContent="space-evenly">
           {wpRemote.map((wp) => {
-            const { name, employee, employee_email, City, country, time } = wp;
+            const { employee, employee_email, city, country, time } = wp;
+
             return (
-              <Center
-                key={name}
-                className={`place ${name}`}
-                flexDirection="column"
+              <Flex
+                key={time}
+                className={`place`}
+                p={4}
+                w="40%"
+                justifyContent="space-between"
               >
-                <p>{employee}</p>
-                <p>{employee_email}</p>
-                <p>{City}</p>
-                <p>{country}</p>
-                <p>{time}</p>
-              </Center>
+                <Box>
+                  <Text fontWeight="bold">{employee}</Text>
+                  <Text>{employee_email}</Text>
+                  <Text>Devices</Text>
+                </Box>
+                <Box>
+                  <Text>{city}</Text>
+                  <Text>{country}</Text>
+                  <Text>Time zone: {time}</Text>
+                </Box>
+              </Flex>
             );
           })}
-        </div>
+        </Flex>
       </Flex>
     </Box>
   );

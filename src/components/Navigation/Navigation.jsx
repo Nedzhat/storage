@@ -9,8 +9,12 @@ import {
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { linkStyles, svgStyle } from "./Navigation.styled";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getUser } from "../../redux/selectors";
 
 export const Navigation = () => {
+  const { email } = useSelector(getUser);
+
   return (
     <Flex as="nav" flexDirection="column">
       <Box
@@ -52,21 +56,26 @@ export const Navigation = () => {
       <Box
         as={NavLink}
         sx={linkStyles}
-        to={"/workplace"}
+        to={"/workplaces"}
         _activeLink={{ color: "white", bg: "main" }}
       >
         <AiOutlineInbox style={svgStyle} />
-        <Text fontWeight="bold">Workplace</Text>
+        <Text fontWeight="bold">Workplaces</Text>
       </Box>
-      <Box
-        as={NavLink}
-        sx={linkStyles}
-        to={"/admin"}
-        _activeLink={{ color: "white", bg: "main" }}
-      >
-        <MdOutlineAdminPanelSettings style={svgStyle} />
-        <Text fontWeight="bold">Admin</Text>
-      </Box>
+      {email ===
+      ("n.kuharenko@sirinsoftware.com" || "l.tubilska@sirinsoftware.com") ? (
+        <Box
+          as={NavLink}
+          sx={linkStyles}
+          to={"/admin"}
+          _activeLink={{ color: "white", bg: "main" }}
+        >
+          <MdOutlineAdminPanelSettings style={svgStyle} />
+          <Text fontWeight="bold">Admin</Text>
+        </Box>
+      ) : (
+        ""
+      )}
       <Divider mt={5} borderColor="main" borderBottomWidth="2px" />
     </Flex>
   );

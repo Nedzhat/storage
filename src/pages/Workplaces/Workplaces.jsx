@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { WorkplaceHeadoffice } from "../../components/WorkplaceHeadoffice/WorkplaceHeadoffice";
 
-const Workplace = () => {
+const Workplaces = () => {
   return (
     <Box as="section" w="60%" bg="bgColor" p={8} minH="100vh" h="auto">
       <WorkplaceHeadoffice />
@@ -9,7 +9,7 @@ const Workplace = () => {
   );
 };
 
-export default Workplace;
+export default Workplaces;
 
 // import { StlViewer } from "react-stl-viewer";
 // const url = "../../../sharp2.stl";
