@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider, db } from "../../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 export const checkUserInDB = async (email) => {
   const docRef = doc(db, "employees", email);
@@ -14,15 +15,13 @@ export const checkUserInDB = async (email) => {
   }
 };
 
-export const logIn = createAsyncThunk("user/login", async () => {
-  return new Promise(async (resolve, reject) => {
+export const logIn = createAsyncThunk("user/login", async (_, thunkAPI) => {
+  try {
     const { user } = await signInWithPopup(auth, provider);
-
-    // проверка на пользователя компании
     const status = user.email.includes("@sirinsoftware.com");
-
     if (!status) {
-      reject();
+      Notify.failure(`Unknow email!`);
+      throw new Error("Unknow email!");
     }
 
     if (status) {
@@ -36,16 +35,21 @@ export const logIn = createAsyncThunk("user/login", async () => {
         projects: employee ? employee.projects : "",
       };
 
-      resolve(formatingUser);
+      return formatingUser;
     }
-  });
+  } catch (error) {
+    console.log(error.message);
+    return thunkAPI.rejectWithValue(error.message);
+  }
 });
 
 export const logOut = createAsyncThunk("user/logout", async () => {
-  return new Promise((resolve) => {
-    auth.signOut();
-    resolve();
-  });
+  try {
+    return auth.signOut();
+  } catch (error) {
+    console.log(error.message);
+    return thunkAPI.rejectWithValue(error.message);
+  }
 });
 
 export const refreshUser = createAsyncThunk(
