@@ -26,6 +26,7 @@ export const logIn = createAsyncThunk("user/login", async (_, thunkAPI) => {
 
     if (status) {
       const employee = await checkUserInDB(user.email);
+      console.log(employee);
       const formatingUser = {
         name: user.displayName,
         email: user.email,
@@ -63,6 +64,7 @@ export const refreshUser = createAsyncThunk(
               // проверка на пользователя компании
               const status = user.email.includes("@sirinsoftware.com");
               if (!status) {
+                Notify.failure(`Unknow email!`);
                 reject();
               }
             }
