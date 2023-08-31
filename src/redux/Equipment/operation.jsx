@@ -12,21 +12,19 @@ import { db } from "../../firebase";
 export const fetchDevices = createAsyncThunk(
   "devices/fetchAll",
   async (_, thunkAPI) => {
-    return new Promise(async (resolve) => {
-      try {
-        let devices = [];
-        const querySnapshot = await getDocs(collection(db, "devices"));
-        querySnapshot.forEach((doc) => {
-          const res = doc.data();
-          res.id = doc.id;
-          devices.push(res);
-        });
-        return resolve(devices);
-      } catch (error) {
-        console.log(error.message);
-        return thunkAPI.rejectWithValue(error.message);
-      }
-    });
+    try {
+      let devices = [];
+      const querySnapshot = await getDocs(collection(db, "devices"));
+      querySnapshot.forEach((doc) => {
+        const res = doc.data();
+        res.id = doc.id;
+        devices.push(res);
+      });
+      return devices;
+    } catch (error) {
+      console.log(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 
@@ -47,15 +45,6 @@ export const addDeviceForUser = createAsyncThunk(
               if (device.exists()) {
                 const updatedDevice = device.data();
                 updatedDevice.id = device.id;
-
-                // console.log({
-                //   email: evt.user.email,
-                //   name: updatedDevice.name,
-                //   action: "Get",
-                //   date: Date.now(),
-                //   location: evt.device.location,
-                //   sn: updatedDevice.sn,
-                // });
                 resolve(updatedDevice);
               } else {
                 reject();
@@ -90,14 +79,6 @@ export const returnDevice = createAsyncThunk(
               if (device.exists()) {
                 const updatedDevice = device.data();
                 updatedDevice.id = device.id;
-                // console.log({
-                //   email: evt.user.email,
-                //   name: updatedDevice.name,
-                //   action: "Return",
-                //   date: Date.now(),
-                //   location: "Sorting table",
-                //   sn: updatedDevice.sn,
-                // });
                 resolve(updatedDevice);
               } else {
                 reject();
