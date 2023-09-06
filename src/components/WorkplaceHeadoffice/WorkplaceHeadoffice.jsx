@@ -1,19 +1,46 @@
-import { Box, Button, Center, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { TbHome2 } from "react-icons/tb";
 import { BiCabinet } from "react-icons/bi";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import "./WorkplaceHeadoffice.css";
 import { useSelector } from "react-redux";
 import {
+  getDevices,
+  getWorkplace,
   getWorkplacesFive,
   getWorkplacesRemote,
   getWorkplacesSix,
 } from "../../redux/selectors";
+import { ModalDetailsWorkplace } from "../ModalDetailsWorkplace/ModalDetailsWorkplace";
+import { useState } from "react";
 
 export const WorkplaceHeadoffice = () => {
+  const [selectedWorkplace, setSelectedWorkplace] = useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const wpSix = useSelector(getWorkplacesSix);
   const wpFive = useSelector(getWorkplacesFive);
   const wpRemote = useSelector(getWorkplacesRemote);
+  const workplaces = useSelector(getWorkplace);
+  const devices = useSelector(getDevices);
+
+  const clickHandler = (device) => {
+    setSelectedWorkplace(device);
+    onOpen();
+  };
 
   return (
     <Box>
@@ -80,15 +107,19 @@ export const WorkplaceHeadoffice = () => {
 
         <div className="container">
           {wpSix.map((wp) => {
-            const { name, employee, employee_email, status } = wp;
+            const { name, employee } = wp;
             return (
               <Center
                 key={name}
                 className={`place ${name}`}
                 flexDirection="column"
+                onClick={() => {
+                  clickHandler(wp);
+                }}
               >
                 <Text fontWeight="bold">{name}</Text>
-                {employee && <p>{employee}</p>}
+
+                {employee && <Text>{employee}</Text>}
               </Center>
             );
           })}
@@ -143,11 +174,11 @@ export const WorkplaceHeadoffice = () => {
 
         <Flex gap="20px" flexWrap="wrap" justifyContent="space-evenly">
           {wpRemote.map((wp) => {
-            const { employee, employee_email, city, country, time } = wp;
+            const { employee, employee_email, city, country, time, id } = wp;
 
             return (
               <Flex
-                key={time}
+                key={id}
                 className={`place`}
                 p={4}
                 w="40%"
@@ -168,6 +199,11 @@ export const WorkplaceHeadoffice = () => {
           })}
         </Flex>
       </Flex>
+      <ModalDetailsWorkplace
+        selectedWorkplace={selectedWorkplace}
+        isOpen={isOpen}
+        onClose={onClose}
+      />
     </Box>
   );
 };

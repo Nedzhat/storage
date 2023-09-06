@@ -35,9 +35,9 @@ export const addDeviceForUser = createAsyncThunk(
       updateDoc(doc(db, "devices", evt.device.id), {
         employee: evt.user.name,
         employee_email: evt.user.email,
-        location: null,
+        location: evt.newLocation,
         status: "use",
-        project: evt.user.projects,
+        // project: evt.user.projects,
       })
         .then(() => {
           getDoc(doc(db, "devices", evt.device.id))

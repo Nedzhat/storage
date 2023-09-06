@@ -33,17 +33,8 @@ export const EquipmentList = () => {
       <Flex flexWrap="wrap" px={8} gap="14px">
         {visibleDevice.length > 0 ? (
           visibleDevice.map((device) => {
-            const {
-              id,
-              name,
-              info,
-              sn,
-              type,
-              location,
-              employee,
-              status,
-              project,
-            } = device;
+            const { id, name, info, sn, type, location, employee, status } =
+              device;
 
             return (
               <Flex
@@ -84,7 +75,7 @@ export const EquipmentList = () => {
                 {status === "use" ? (
                   <Box>
                     <Text>Employee: {employee}</Text>
-                    <Text>Project: {project}</Text>
+                    <Text>Location: {location}</Text>
                   </Box>
                 ) : (
                   <Text>Location: {location}</Text>

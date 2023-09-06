@@ -56,3 +56,20 @@ export const getVisibleEmployees = createSelector(
     return visibleContacts;
   }
 );
+
+export const getWorkplace = createSelector(
+  [getWorkplacesSix, getWorkplacesFive, getWorkplacesRemote],
+  (wpSix, wpFive, wpRemote) => {
+    return [...wpSix, ...wpFive, ...wpRemote];
+  }
+);
+
+export const getWorkplaceEmployee = createSelector(
+  [getWorkplacesSix, getWorkplacesFive, getWorkplacesRemote, getUser],
+  (wpSix, wpFive, wpRemote, user) => {
+    const allWp = [...wpSix, ...wpFive, ...wpRemote];
+    return allWp.filter((wp) => {
+      return wp.employee_email === user.email;
+    });
+  }
+);

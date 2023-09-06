@@ -6,6 +6,7 @@ import {
   AiOutlineFundProjectionScreen,
   AiOutlineInbox,
 } from "react-icons/ai";
+import { BsPinMap } from "react-icons/bs";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { linkStyles, svgStyle } from "./Navigation.styled";
 import { NavLink } from "react-router-dom";
@@ -59,7 +60,7 @@ export const Navigation = () => {
         to={"/workplaces"}
         _activeLink={{ color: "white", bg: "main" }}
       >
-        <AiOutlineInbox style={svgStyle} />
+        <BsPinMap style={svgStyle} />
         <Text fontWeight="bold">Workplaces</Text>
       </Box>
       {email ===

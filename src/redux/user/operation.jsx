@@ -26,7 +26,7 @@ export const logIn = createAsyncThunk("user/login", async (_, thunkAPI) => {
 
     if (status) {
       const employee = await checkUserInDB(user.email);
-      console.log(employee);
+
       const formatingUser = {
         name: user.displayName,
         email: user.email,

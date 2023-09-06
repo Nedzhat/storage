@@ -1,5 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getDevices, getUser, getUserDevices } from "../../redux/selectors";
+import {
+  getDevices,
+  getUser,
+  getUserDevices,
+  getWorkplaceEmployee,
+} from "../../redux/selectors";
 import { logOut } from "../../redux/user/operation";
 
 import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
@@ -7,11 +12,13 @@ import { Box, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react";
 import { AiOutlineFundProjectionScreen, AiOutlineUser } from "react-icons/ai";
 import { HiOutlineLogout } from "react-icons/hi";
 import { MdOutlineImportantDevices } from "react-icons/md";
+import { BsPinMap } from "react-icons/bs";
 
 export const Sidebar = () => {
   const user = useSelector(getUser);
   const devices = useSelector(getDevices);
   const equipment = getUserDevices(devices, user.email);
+  const workplaces = useSelector(getWorkplaceEmployee);
 
   const dispatch = useDispatch();
 
@@ -76,13 +83,45 @@ export const Sidebar = () => {
             >
               <AiOutlineFundProjectionScreen size="30px" />
               <Box>
-                <Text fontWeight="bold" fontSize="xl">
-                  {user.projects}
-                </Text>
+                <Text fontSize="xl">{user.projects}</Text>
               </Box>
             </Flex>
           )}
         </Flex>
+        <Box mt={8}>
+          {workplaces ? (
+            <Heading fontSize="md">Your Workplaces</Heading>
+          ) : (
+            <Heading fontSize="md" color="second">
+              You have to choose workplace!
+            </Heading>
+          )}
+          <Divider mt={5} mb={2} borderColor="main" borderBottomWidth="2px" />
+          <Flex gap="10px" flexDirection="column">
+            {workplaces.length > 0 &&
+              workplaces.map((wp, idx) => {
+                return (
+                  <Flex
+                    key={idx}
+                    p={4}
+                    gap="10px"
+                    alignItems="center"
+                    border="1px solid #989ca4"
+                    borderRadius="8px"
+                  >
+                    <BsPinMap size="30px" />
+                    <Box>
+                      <Text fontSize="xl">
+                        {wp.city
+                          ? "Remote - " + wp.country + ", " + wp.city
+                          : "Head office - " + wp.name}
+                      </Text>
+                    </Box>
+                  </Flex>
+                );
+              })}
+          </Flex>
+        </Box>
         <Box mt={8}>
           {resTypesDevices.length > 0 ? (
             <Heading fontSize="md">Your Devices</Heading>

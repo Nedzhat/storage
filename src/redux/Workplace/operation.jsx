@@ -49,7 +49,9 @@ export const fetchWorkplacesRemote = createAsyncThunk(
         collection(db, "workplace", "remote", "remote")
       );
       querySnapshot.forEach((doc) => {
-        workplaces.push(doc.data());
+        const res = doc.data();
+        res.id = doc.id;
+        workplaces.push(res);
       });
       return workplaces;
     } catch (error) {
