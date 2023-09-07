@@ -14,6 +14,7 @@ import {
   fetchWorkplacesRemote,
   fetchWorkplacesSix,
 } from "../redux/Workplace/operation";
+import { fetchHistory } from "../redux/History/operation";
 
 const MyDevices = lazy(() => import("../pages/MyDevices/MyDevices"));
 const Employees = lazy(() => import("../pages/Employees/Employees"));
@@ -35,6 +36,7 @@ function App() {
       dispatch(fetchWorkplacesSix());
       dispatch(fetchWorkplacesFive());
       dispatch(fetchWorkplacesRemote());
+      dispatch(fetchHistory());
     }
   }, [dispatch, isLoggedIn]);
 

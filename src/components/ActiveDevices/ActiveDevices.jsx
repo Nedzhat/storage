@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { getDevices, getUser, getUserDevices } from "../../redux/selectors";
+import {
+  getDevices,
+  getHistory,
+  getUser,
+  getUserDevices,
+} from "../../redux/selectors";
 
 import {
   Box,

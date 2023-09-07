@@ -17,6 +17,7 @@ import { userReducer } from "./user/userSlice";
 import { employeesReducer } from "./Employees/employeesSlice";
 import { filterEmployeesReducer } from "./FilterEmployees/FilterEmployeesSlice";
 import { workplaceReducer } from "./Workplace/workplaceSlice";
+import { historyReducer } from "./History/historySlice";
 
 const authPersistConfig = {
   key: "user.employee",
@@ -32,6 +33,7 @@ export const store = configureStore({
     filterDevices: filterDevicesReducer,
     filterEmployees: filterEmployeesReducer,
     workplaces: workplaceReducer,
+    history: historyReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

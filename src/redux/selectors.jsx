@@ -20,6 +20,12 @@ export const getWorkplacesFive = (state) => state.workplaces.fiveFloor;
 
 export const getWorkplacesRemote = (state) => state.workplaces.remote;
 
+export const getHistory = (state) => {
+  let sortHistory = [...state.history.history];
+  sortHistory.sort((a, b) => b.date - a.date);
+  return sortHistory;
+};
+
 export const getUserDevices = (devices, email) => {
   return devices.filter((device) => device.employee_email === email);
 };

@@ -22,9 +22,17 @@ import { returnDevice } from "../../redux/Equipment/operation";
 
 export const ModalReturnDevice = ({ selectedDevice, isOpen, onClose }) => {
   const dispatch = useDispatch();
-  const { equipment } = useSelector(getUser);
+  const user = useSelector(getUser);
 
   const takeIdDevice = (id) => {
+    console.log({
+      name: selectedDevice.name,
+      sn: selectedDevice.sn,
+      location: selectedDevice.location,
+      employee_email: user.email,
+      action: "Return",
+      date: Date.now(),
+    });
     dispatch(returnDevice(id));
     onClose();
   };

@@ -12,9 +12,22 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import history from "../../../history.json";
+
+import { useSelector } from "react-redux";
+import { getHistory, getUser } from "../../redux/selectors";
+
+const formatDate = (date) => {
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = String(d.getFullYear()); // Преобразуйте год в строку
+  return `${day}.${month}.${year}`;
+};
 
 export const History = () => {
+  const user = useSelector(getUser);
+  const history = useSelector(getHistory);
+
   return (
     <Box p={8}>
       <Box
@@ -37,17 +50,24 @@ export const History = () => {
             </Thead>
             <Tbody>
               {history.length > 0 &&
-                history.map(({ name, action, date, location, sn }, idx) => {
-                  return (
-                    <Tr key={idx}>
-                      <Td>{name}</Td>
-                      <Td>{action}</Td>
-                      <Td>{date}</Td>
-                      <Td>{location}</Td>
-                      <Td>{sn}</Td>
-                    </Tr>
-                  );
-                })}
+                history.map(
+                  (
+                    { name, employee_email, action, date, location, sn },
+                    idx
+                  ) => {
+                    if (employee_email === user.email) {
+                      return (
+                        <Tr key={idx}>
+                          <Td>{name}</Td>
+                          <Td>{action}</Td>
+                          <Td>{formatDate(date)}</Td>
+                          <Td>{location}</Td>
+                          <Td>{sn}</Td>
+                        </Tr>
+                      );
+                    }
+                  }
+                )}
             </Tbody>
           </Table>
           {history.length === 0 && (

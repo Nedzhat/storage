@@ -39,6 +39,14 @@ export const ModalAddDevice = ({ selectedDevice, isOpen, onClose }) => {
 
   const submitDeviceForUser = (device) => {
     setLoc("");
+    console.log({
+      name: device.name,
+      sn: device.sn,
+      location: device.location,
+      employee_email: user.email,
+      action: "Take",
+      date: Date.now(),
+    });
     const newLocation = loc.target.value;
     dispatch(addDeviceForUser({ device, user, newLocation }));
     onClose();
