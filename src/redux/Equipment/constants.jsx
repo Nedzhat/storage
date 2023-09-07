@@ -7,7 +7,6 @@ export const arrayOfType = [
   "Power station",
   "DevBoard",
   "Power bank",
-  "Mouse",
-  "Keyboard",
   "SSD",
+  "Processor",
 ];

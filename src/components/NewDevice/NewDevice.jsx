@@ -21,7 +21,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { arrayOfType } from "../../redux/Equipment/constants";
-import { getEmployees } from "../../redux/selectors";
+import { getEmployees, getWorkplace } from "../../redux/selectors";
 import { createDevice } from "../../redux/Equipment/operation";
 
 const getEmployeeEmail = (employees, name) => {
@@ -37,6 +37,7 @@ export const NewDevice = () => {
   const firstField = useRef();
 
   const employees = useSelector(getEmployees);
+  const workplaces = useSelector(getWorkplace);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -51,10 +52,9 @@ export const NewDevice = () => {
         type: type.value,
         status,
         location: location.value ? location.value : null,
-        employee: employee.value ? employee.value : null,
-        employee_email: employee.value
-          ? getEmployeeEmail(employees, employee.value)
-          : null,
+        employee: status === "use" ? employee.value : null,
+        employee_email:
+          status === "use" ? getEmployeeEmail(employees, employee.value) : null,
         project: null,
       })
     );
@@ -129,18 +129,24 @@ export const NewDevice = () => {
                 </RadioGroup>
                 <Box>
                   <FormLabel htmlFor="location">
-                    Select location or employee
+                    {status === "use"
+                      ? "Select the employee and the location where he will use it"
+                      : "Select his location"}
                   </FormLabel>
                   <Select
                     id="location"
                     defaultValue="none"
-                    isDisabled={status === "use"}
                     placeholder="Select location"
                     isRequired
                   >
-                    <option value="Closet-1">Closet A</option>
-                    <option value="Closet-2">Closet B</option>
-                    <option value="Closet-3">Closet C</option>
+                    {workplaces.length > 0 &&
+                      workplaces.map(({ name }) => {
+                        return (
+                          <option key={name} value={name}>
+                            {name}
+                          </option>
+                        );
+                      })}
                   </Select>
                 </Box>
                 <Select

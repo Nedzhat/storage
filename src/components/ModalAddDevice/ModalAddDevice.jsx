@@ -32,8 +32,6 @@ export const ModalAddDevice = ({ selectedDevice, isOpen, onClose }) => {
   const [status, setStatus] = useState("my");
   const [loc, setLoc] = useState("");
 
-  // console.log(loc && loc.target.value);
-
   const dispatch = useDispatch();
   const user = useSelector(getUser);
   const workplacesEmployee = useSelector(getWorkplaceEmployee);
