@@ -1,0 +1,26 @@
+@keyframes flyBird {
+    0% {
+        transform: translate(0, 0);
+      }
+      33% {
+        transform: translate(0, 50px);
+      }
+      66% {
+        transform: translate(0, -50px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+  }
+  
+  .bird-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .bird {
+    animation: flyBird 4s linear infinite;
+  }

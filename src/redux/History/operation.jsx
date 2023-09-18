@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
 export const fetchHistory = createAsyncThunk(
@@ -13,6 +13,19 @@ export const fetchHistory = createAsyncThunk(
       });
 
       return history;
+    } catch (error) {
+      console.log(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createAction = createAsyncThunk(
+  "history/action",
+  async (action, thunkAPI) => {
+    try {
+      addDoc(collection(db, "history"), action);
+      return action;
     } catch (error) {
       console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);

@@ -192,7 +192,6 @@ export const WorkplaceHeadoffice = () => {
                 <Box>
                   <Text>{city}</Text>
                   <Text>{country}</Text>
-                  <Text>Time zone: {time}</Text>
                 </Box>
               </Flex>
             );

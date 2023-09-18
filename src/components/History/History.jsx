@@ -1,9 +1,7 @@
 import {
   Box,
-  Flex,
   Heading,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
@@ -20,7 +18,7 @@ const formatDate = (date) => {
   const d = new Date(date);
   const day = String(d.getDate()).padStart(2, "0");
   const month = String(d.getMonth() + 1).padStart(2, "0");
-  const year = String(d.getFullYear()); // Преобразуйте год в строку
+  const year = String(d.getFullYear());
   return `${day}.${month}.${year}`;
 };
 
@@ -36,7 +34,7 @@ export const History = () => {
         p={8}
         boxShadow="0px 0px 24px rgba(50, 59, 75, 0.15)"
       >
-        <Heading size="lg">History (example, not working)</Heading>
+        <Heading size="lg">History</Heading>
         <TableContainer>
           <Table variant="striped" colorScheme="#323b4b">
             <Thead>

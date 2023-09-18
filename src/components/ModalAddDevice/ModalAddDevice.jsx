@@ -27,6 +27,7 @@ import {
   getWorkplaceEmployee,
 } from "../../redux/selectors";
 import { useState } from "react";
+import { createAction } from "../../redux/History/operation";
 
 export const ModalAddDevice = ({ selectedDevice, isOpen, onClose }) => {
   const [status, setStatus] = useState("my");
@@ -39,14 +40,16 @@ export const ModalAddDevice = ({ selectedDevice, isOpen, onClose }) => {
 
   const submitDeviceForUser = (device) => {
     setLoc("");
-    console.log({
-      name: device.name,
-      sn: device.sn,
-      location: device.location,
-      employee_email: user.email,
-      action: "Take",
-      date: Date.now(),
-    });
+    dispatch(
+      createAction({
+        name: device.name,
+        sn: device.sn,
+        location: device.location,
+        employee_email: user.email,
+        action: "Take",
+        date: Date.now(),
+      })
+    );
     const newLocation = loc.target.value;
     dispatch(addDeviceForUser({ device, user, newLocation }));
     onClose();

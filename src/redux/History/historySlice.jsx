@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchHistory } from "./operation";
+import { createAction, fetchHistory } from "./operation";
 
 const historyInitialState = {
   history: [],
@@ -10,9 +10,13 @@ const historySlice = createSlice({
   initialState: historyInitialState,
   reducers: {},
   extraReducers: (builder) =>
-    builder.addCase(fetchHistory.fulfilled, (state, action) => {
-      state.history = action.payload;
-    }),
+    builder
+      .addCase(fetchHistory.fulfilled, (state, action) => {
+        state.history = action.payload;
+      })
+      .addCase(createAction.fulfilled, (state, action) => {
+        state.history.push(action.payload);
+      }),
 });
 
 export const historyReducer = historySlice.reducer;
