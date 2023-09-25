@@ -23,6 +23,7 @@ import {
 import { arrayOfType } from "../../redux/Equipment/constants";
 import { getEmployees, getWorkplace } from "../../redux/selectors";
 import { createDevice } from "../../redux/Equipment/operation";
+import { createAction } from "../../redux/History/operation";
 
 const getEmployeeEmail = (employees, name) => {
   const result = employees.find((emp) => emp.name === name);
@@ -58,6 +59,19 @@ export const NewDevice = () => {
         project: null,
       })
     );
+
+    if (status === "use") {
+      dispatch(
+        createAction({
+          name: name.value,
+          sn: sn.value,
+          location: location.value,
+          employee_email: getEmployeeEmail(employees, employee.value),
+          action: "Take",
+          date: Date.now(),
+        })
+      );
+    }
 
     onClose();
   };

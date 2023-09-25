@@ -30,7 +30,7 @@ export const ModalReturnDevice = ({ selectedDevice, isOpen, onClose }) => {
       createAction({
         name: selectedDevice.name,
         sn: selectedDevice.sn,
-        location: selectedDevice.location,
+        location: "Sorting table",
         employee_email: user.email,
         action: "Return",
         date: Date.now(),
