@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addWorkplaceRemote,
   fetchWorkplacesFive,
   fetchWorkplacesRemote,
   fetchWorkplacesSix,
@@ -25,6 +26,9 @@ const workplaceSlice = createSlice({
       })
       .addCase(fetchWorkplacesRemote.fulfilled, (state, action) => {
         state.remote = action.payload;
+      })
+      .addCase(addWorkplaceRemote.fulfilled, (state, action) => {
+        state.remote.push(action.payload);
       }),
 });
 

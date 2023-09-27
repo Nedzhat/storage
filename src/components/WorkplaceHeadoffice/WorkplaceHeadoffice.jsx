@@ -1,9 +1,4 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Box,
   Button,
   Center,
@@ -174,7 +169,7 @@ export const WorkplaceHeadoffice = () => {
 
         <Flex gap="20px" flexWrap="wrap" justifyContent="space-evenly">
           {wpRemote.map((wp) => {
-            const { employee, employee_email, city, country, time, id } = wp;
+            const { employee, employee_email, city, country, id } = wp;
 
             return (
               <Flex
@@ -183,6 +178,9 @@ export const WorkplaceHeadoffice = () => {
                 p={4}
                 w="40%"
                 justifyContent="space-between"
+                onClick={() => {
+                  clickHandler(wp);
+                }}
               >
                 <Box>
                   <Text fontWeight="bold">{employee}</Text>

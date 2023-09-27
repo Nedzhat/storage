@@ -13,6 +13,7 @@ import { AiOutlineFundProjectionScreen, AiOutlineUser } from "react-icons/ai";
 import { HiOutlineLogout } from "react-icons/hi";
 import { MdOutlineImportantDevices } from "react-icons/md";
 import { BsPinMap } from "react-icons/bs";
+import { NewRemoteWorkplace } from "../NewRemoteWorkplace/NewRemoteWorkplace";
 
 export const Sidebar = () => {
   const user = useSelector(getUser);
@@ -89,7 +90,7 @@ export const Sidebar = () => {
           )}
         </Flex>
         <Box mt={8}>
-          {workplaces ? (
+          {workplaces.length > 0 ? (
             <Heading fontSize="md">Your Workplaces</Heading>
           ) : (
             <Heading fontSize="md" color="second">
@@ -120,6 +121,7 @@ export const Sidebar = () => {
                   </Flex>
                 );
               })}
+            <NewRemoteWorkplace />
           </Flex>
         </Box>
         <Box mt={8}>
