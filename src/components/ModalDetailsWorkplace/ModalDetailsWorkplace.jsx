@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   Box,
   Button,
-  Center,
   Flex,
   Modal,
   ModalBody,
@@ -14,7 +12,9 @@ import {
   ModalOverlay,
   Text,
 } from "@chakra-ui/react";
-import { getDevices } from "../../redux/selectors";
+import { getDevices, getUser } from "../../redux/selectors";
+import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import { changeStatusWorkplace } from "../../redux/Workplace/operation";
 
 export const ModalDetailsWorkplace = ({
   selectedWorkplace,
@@ -22,6 +22,32 @@ export const ModalDetailsWorkplace = ({
   onClose,
 }) => {
   const devices = useSelector(getDevices);
+  const user = useSelector(getUser);
+  const dispatch = useDispatch();
+
+  const takeWorkplace = () => {
+    dispatch(
+      changeStatusWorkplace({
+        employee_email: user.email,
+        employee: user.name,
+        status: "reserved",
+        name: selectedWorkplace.name,
+      })
+    );
+    onClose();
+  };
+
+  const returnWorkplace = () => {
+    dispatch(
+      changeStatusWorkplace({
+        employee_email: "",
+        employee: "",
+        status: "free",
+        name: selectedWorkplace.name,
+      })
+    );
+    onClose();
+  };
 
   return (
     <Box>
@@ -31,7 +57,28 @@ export const ModalDetailsWorkplace = ({
           <ModalContent>
             <ModalHeader textTransform="uppercase">
               Workplace - "{selectedWorkplace.name}"
-              <Text color="second">{selectedWorkplace.status}</Text>
+              <Flex justifyContent="space-between" alignItems="center">
+                <Text color="second">{selectedWorkplace.status}</Text>
+                {selectedWorkplace.status === "free" && (
+                  <Button
+                    onClick={takeWorkplace}
+                    variant="outline"
+                    _hover={{ bg: "main", color: "white" }}
+                  >
+                    <AddIcon />
+                  </Button>
+                )}
+                {selectedWorkplace.status === "reserved" &&
+                  selectedWorkplace.employee_email === user.email && (
+                    <Button
+                      onClick={returnWorkplace}
+                      variant="outline"
+                      _hover={{ bg: "main", color: "white" }}
+                    >
+                      <MinusIcon />
+                    </Button>
+                  )}
+              </Flex>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>

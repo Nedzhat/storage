@@ -1,5 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addDoc, collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../firebase";
 
 export const fetchWorkplacesSix = createAsyncThunk(
@@ -77,6 +84,35 @@ export const addWorkplaceRemote = createAsyncThunk(
         const formattingWp = wpDoc.data();
         formattingWp.id = wpDoc.id;
         return formattingWp;
+      } else {
+        throw new Error("Document not found");
+      }
+    } catch (error) {
+      console.log(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const changeStatusWorkplace = createAsyncThunk(
+  "workplace/status",
+  async (wp, thunkAPI) => {
+    try {
+      const { employee, employee_email, status, name } = wp;
+
+      const ref = await updateDoc(
+        doc(db, "workplace", "headoffice", "6.3", name),
+        {
+          employee,
+          employee_email,
+          status,
+        }
+      );
+      const wpDoc = await getDoc(
+        doc(db, "workplace", "headoffice", "6.3", name)
+      );
+      if (wpDoc.exists()) {
+        return wpDoc.data();
       } else {
         throw new Error("Document not found");
       }

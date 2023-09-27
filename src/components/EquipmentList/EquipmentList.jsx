@@ -51,7 +51,7 @@ export const EquipmentList = () => {
                 <Flex justifyContent="space-between">
                   <MdOutlineImportantDevices size={30} color="main" />
 
-                  {status === "stock" ? (
+                  {status === "stock" && (
                     <Button
                       onClick={() => {
                         clickHandler(device);
@@ -61,8 +61,6 @@ export const EquipmentList = () => {
                     >
                       <AddIcon />
                     </Button>
-                  ) : (
-                    ""
                   )}
                 </Flex>
                 <Flex justifyContent="space-between" alignItems="center">
