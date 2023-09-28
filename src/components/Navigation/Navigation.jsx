@@ -64,7 +64,7 @@ export const Navigation = () => {
         <Text fontWeight="bold">Workplaces</Text>
       </Box>
       {email ===
-      ("n.kuharenko@sirinsoftware.com" || "l.tubilska@sirinsoftware.com") ? (
+        ("n.kuharenko@sirinsoftware.com" || "l.tubilska@sirinsoftware.com") && (
         <Box
           as={NavLink}
           sx={linkStyles}
@@ -74,8 +74,6 @@ export const Navigation = () => {
           <MdOutlineAdminPanelSettings style={svgStyle} />
           <Text fontWeight="bold">Admin</Text>
         </Box>
-      ) : (
-        ""
       )}
       <Divider mt={5} borderColor="main" borderBottomWidth="2px" />
     </Flex>
