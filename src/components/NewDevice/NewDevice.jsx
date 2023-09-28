@@ -121,7 +121,11 @@ export const NewDevice = () => {
                 </Box>
                 <Box>
                   <FormLabel htmlFor="sn">Serial Number</FormLabel>
-                  <Input id="sn" placeholder="Please enter serial number" />
+                  <Input
+                    id="sn"
+                    placeholder="Please enter serial number"
+                    isRequired
+                  />
                 </Box>
                 <Box>
                   <FormLabel htmlFor="type">Select type</FormLabel>
