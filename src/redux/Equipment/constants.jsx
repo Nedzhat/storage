@@ -5,7 +5,6 @@ export const arrayOfType = [
   "RAM",
   "Phone",
   "Power station",
-  "DevBoard",
   "Power bank",
   "SSD",
   "Processor",

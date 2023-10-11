@@ -19,9 +19,10 @@ import {
   Select,
   Stack,
   useDisclosure,
+  Text,
 } from "@chakra-ui/react";
 import { arrayOfType } from "../../redux/Equipment/constants";
-import { getEmployees, getWorkplace } from "../../redux/selectors";
+import { getDevices, getEmployees, getWorkplace } from "../../redux/selectors";
 import { createDevice } from "../../redux/Equipment/operation";
 import { createAction } from "../../redux/History/operation";
 
@@ -33,12 +34,25 @@ const getEmployeeEmail = (employees, name) => {
 export const NewDevice = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [status, setStatus] = useState("use");
+  const [checkSn, setCheckSn] = useState(false);
 
   const dispatch = useDispatch();
   const firstField = useRef();
 
   const employees = useSelector(getEmployees);
   const workplaces = useSelector(getWorkplace);
+  const devices = useSelector(getDevices);
+
+  const validSn = (e) => {
+    const sn = e.target.value.toLowerCase();
+    const isSnValid = devices.some((dev) => dev.sn.toLowerCase() === sn);
+
+    if (isSnValid) {
+      setCheckSn(true);
+    } else {
+      setCheckSn(false);
+    }
+  };
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -52,7 +66,7 @@ export const NewDevice = () => {
         sn: sn.value,
         type: type.value,
         status,
-        location: location.value ? location.value : null,
+        location: location.value || null,
         employee: status === "use" ? employee.value : null,
         employee_email:
           status === "use" ? getEmployeeEmail(employees, employee.value) : null,
@@ -121,10 +135,16 @@ export const NewDevice = () => {
                 </Box>
                 <Box>
                   <FormLabel htmlFor="sn">Serial Number</FormLabel>
+                  {checkSn && (
+                    <Text color="red">Serial number already exists</Text>
+                  )}
                   <Input
                     id="sn"
                     placeholder="Please enter serial number"
+                    isInvalid={checkSn}
+                    errorBorderColor="crimson"
                     isRequired
+                    onChange={validSn}
                   />
                 </Box>
                 <Box>
@@ -203,6 +223,7 @@ export const NewDevice = () => {
               _hover={{ bg: "main", color: "white" }}
               type="submit"
               form="addDevice"
+              isDisabled={checkSn}
             >
               Submit
             </Button>
