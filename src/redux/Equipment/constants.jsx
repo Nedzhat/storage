@@ -8,4 +8,7 @@ export const arrayOfType = [
   "Power bank",
   "SSD",
   "Processor",
+  "Power supply",
+  "Measuring equipment",
+  "Other",
 ];

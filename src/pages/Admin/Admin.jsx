@@ -23,10 +23,10 @@ const Admin = () => {
   const [employee, setEmployee] = useState({});
 
   const employees = useSelector(getEmployees);
-  const devices = useSelector(getDevices);
-  const wpSix = useSelector(getWorkplacesSix);
-  const wpFive = useSelector(getWorkplacesFive);
-  const wpRemote = useSelector(getWorkplacesRemote);
+  // const devices = useSelector(getDevices);
+  // const wpSix = useSelector(getWorkplacesSix);
+  // const wpFive = useSelector(getWorkplacesFive);
+  // const wpRemote = useSelector(getWorkplacesRemote);
 
   const selectEmplopyee = (e) => {
     employees.map((employee) => {
@@ -39,17 +39,16 @@ const Admin = () => {
     }
   };
 
+  const handleFieldChange = (field, newValue) => {
+    setEmployee({
+      ...employee,
+      [field]: newValue,
+    });
+  };
+
   const submitFormEmployeeEdit = (e) => {
     e.preventDefault();
-
-    const { name, email, position, projects } = e.target;
-    console.log({
-      name: name.value,
-      id: email.value,
-      email: email.value,
-      position: position.value,
-      projects: projects.value,
-    });
+    console.log(employee);
   };
 
   return (
@@ -77,7 +76,22 @@ const Admin = () => {
         {employee.email && (
           <Flex gap="50px">
             <Box w="30%">
-              <form id="employeeEdit" onSubmit={submitFormEmployeeEdit}>
+              <form onSubmit={submitFormEmployeeEdit}>
+                {Object.keys(employee).map((field) => (
+                  <Box key={field}>
+                    <FormLabel htmlFor={field}>{field}:</FormLabel>
+                    <Input
+                      type="text"
+                      id={field}
+                      name={field}
+                      value={employee[field] || ""}
+                      onChange={(e) => handleFieldChange(field, e.target.value)}
+                    />
+                  </Box>
+                ))}
+                <button type="submit">Сохранить</button>
+              </form>
+              {/* <form id="employeeEdit" onSubmit={submitFormEmployeeEdit}>
                 <Stack spacing="4px">
                   <Box>
                     <FormLabel htmlFor="name">Name: {employee.name}</FormLabel>
@@ -110,7 +124,7 @@ const Admin = () => {
                     />
                   </Box>
                 </Stack>
-              </form>
+              </form> */}
             </Box>
             <Flex w="50%" flexDirection="column" gap="50px">
               <Button

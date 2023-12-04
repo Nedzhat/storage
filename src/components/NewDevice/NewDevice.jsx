@@ -177,6 +177,7 @@ export const NewDevice = () => {
                     placeholder="Select location"
                     isRequired
                   >
+                    <option>Sorting table</option>
                     {workplaces.length > 0 &&
                       workplaces.map(({ name }) => {
                         return (
